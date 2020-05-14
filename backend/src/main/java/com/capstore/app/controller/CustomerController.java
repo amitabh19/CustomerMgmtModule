@@ -16,5 +16,10 @@ public class CustomerController {
 public void SahilKaFunction(){
 	//sahil ka comment
 }
+
+//bht sahi
+public void something()
+{
+}
 	
 }
