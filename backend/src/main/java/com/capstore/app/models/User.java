@@ -23,18 +23,19 @@ public class User {
 	@Column(name="user_id")
 	private int userId;  //( number auto generated): Primary Key
     private String name;
+    @Column(name="username", unique = true)
     private String username;  //(min: 3)
 	private String password;    //(min: 8)
+	@Column(name="email", unique = true)
 	private String eMail;
     private String role;           //(ROLE_CUSTOMER,ROLE_ADMIN,ROLE_MERCHANT)
     private boolean isActive;
 	private String securityQuestion;
 	private String securityAnswer;
 	
-	public User(int userId, String name, String username, String password, String eMail, String role, boolean isActive,
+	public User(String name, String username, String password, String eMail, String role, boolean isActive,
 			String securityQuestion, String securityAnswer) {
 		super();
-		this.userId = userId;
 		this.name = name;
 		this.username = username;
 		this.password = password;

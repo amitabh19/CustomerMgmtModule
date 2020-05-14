@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "merchant_details")
-public class MerchantDetails extends User{
+public class MerchantDetails extends User {
 
 	@Column(name = "phone_number")
 	private String phoneNumber;
@@ -30,23 +30,18 @@ public class MerchantDetails extends User{
 	private Set<ProductFeedback> pF;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Coupon.class)
 	Set<Coupon> coupons;
-    @Column(name = "is_approved")
-    private boolean isApproved;
-    @Column(name = "rating")
-    private int rating;
+	@Column(name = "is_approved")
+	private boolean isApproved;
+	@Column(name = "rating")
+	private int rating;
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Inventory.class)
-    private int inventoryId;
-	
-	
-	
-	
-	
+	private int inventoryId;
 
-	public MerchantDetails(int userId, String name, String username, String password, String eMail, String role,
+	public MerchantDetails(String name, String username, String password, String eMail, String role,
 			boolean isActive, String securityQuestion, String securityAnswer, String phoneNumber,
 			String alternatePhoneNumber, String alternateEmail, Set<Product> products, Set<UserAddress> addresses,
 			Set<ProductFeedback> pF, Set<Coupon> coupons, boolean isApproved, int rating, int inventoryId) {
-		super(userId, name, username, password, eMail, role, isActive, securityQuestion, securityAnswer);
+		super(name, username, password, eMail, role, isActive, securityQuestion, securityAnswer);
 		this.phoneNumber = phoneNumber;
 		this.alternatePhoneNumber = alternatePhoneNumber;
 		this.alternateEmail = alternateEmail;
@@ -66,60 +61,88 @@ public class MerchantDetails extends User{
 	public void setpF(Set<ProductFeedback> pF) {
 		this.pF = pF;
 	}
+
 	public int getInventoryId() {
 		return inventoryId;
 	}
+
 	public void setInventoryId(int inventoryId) {
 		this.inventoryId = inventoryId;
 	}
+
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
+
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
 	public String getAlternatePhoneNumber() {
 		return alternatePhoneNumber;
 	}
+
 	public void setAlternatePhoneNumber(String alternatePhoneNumber) {
 		this.alternatePhoneNumber = alternatePhoneNumber;
 	}
+
 	public String getAlternateEmail() {
 		return alternateEmail;
 	}
+
 	public void setAlternateEmail(String alternateEmail) {
 		this.alternateEmail = alternateEmail;
 	}
-	
-	public Set<Product> getProducts() { return products; } 
-	public void setProducts(Set<Product> products) { this.products = products; }
-	
-	public Set<UserAddress> getAddresses() { return addresses; } 
-	public void setAddresses(Set<UserAddress> addresses) { this.addresses = addresses; }
-	
-	public Set<Coupon> getCoupons() { return coupons; }
-	public void setCoupons(Set<Coupon> coupons) { this.coupons = coupons; }
-	 
+
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+
+	public Set<UserAddress> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(Set<UserAddress> addresses) {
+		this.addresses = addresses;
+	}
+
+	public Set<Coupon> getCoupons() {
+		return coupons;
+	}
+
+	public void setCoupons(Set<Coupon> coupons) {
+		this.coupons = coupons;
+	}
+
 	public boolean isApproved() {
 		return isApproved;
 	}
+
 	public void setApproved(boolean isApproved) {
 		this.isApproved = isApproved;
 	}
+
 	public int getRating() {
 		return rating;
 	}
+
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	
+
 	public Set<ProductFeedback> getProductFeedback() {
 		return pF;
 	}
+
 	public void setProductFeedback(Set<ProductFeedback> productFeedback) {
 		this.pF = productFeedback;
 	}
+
 	public MerchantDetails() {
 	}
-	
+
 }
