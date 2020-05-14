@@ -12,12 +12,5 @@ public class CustomerController {
 	//random comment
 	// krapiya yha apne functions bana dijiye
 	//mike testing 
-
-// zarur
-
-@GetMapping("")
-public Product getByCategory()
-{
-}
 	
 }
