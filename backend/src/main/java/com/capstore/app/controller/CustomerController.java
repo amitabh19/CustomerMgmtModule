@@ -13,9 +13,22 @@ public class CustomerController {
 	// krapiya yha apne functions bana dijiye
 	//mike testing 
 
+
 public void SahilKaFunction(){
 	//sahil ka comment
 }
+
+//bht sahi
+public void something()
+{
+}
+
+//vishruti func
+public void test()
+{
+}
+
+
 	
 public void function2(){
 	//next push
