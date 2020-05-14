@@ -17,4 +17,7 @@ public void SahilKaFunction(){
 	//sahil ka comment
 }
 	
+public void function2(){
+	//next push
+}
 }
