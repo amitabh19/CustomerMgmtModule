@@ -38,9 +38,31 @@ public class MerchantDetails extends User{
     private int inventoryId;
 	
 	
+	
+	
+	
+
+	public MerchantDetails(int userId, String name, String username, String password, String eMail, String role,
+			boolean isActive, String securityQuestion, String securityAnswer, String phoneNumber,
+			String alternatePhoneNumber, String alternateEmail, Set<Product> products, Set<UserAddress> addresses,
+			Set<ProductFeedback> pF, Set<Coupon> coupons, boolean isApproved, int rating, int inventoryId) {
+		super(userId, name, username, password, eMail, role, isActive, securityQuestion, securityAnswer);
+		this.phoneNumber = phoneNumber;
+		this.alternatePhoneNumber = alternatePhoneNumber;
+		this.alternateEmail = alternateEmail;
+		this.products = products;
+		this.addresses = addresses;
+		this.pF = pF;
+		this.coupons = coupons;
+		this.isApproved = isApproved;
+		this.rating = rating;
+		this.inventoryId = inventoryId;
+	}
+
 	public Set<ProductFeedback> getpF() {
 		return pF;
 	}
+
 	public void setpF(Set<ProductFeedback> pF) {
 		this.pF = pF;
 	}

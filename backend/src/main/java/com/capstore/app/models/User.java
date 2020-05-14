@@ -31,6 +31,19 @@ public class User {
 	private String securityQuestion;
 	private String securityAnswer;
 	
+	public User(int userId, String name, String username, String password, String eMail, String role, boolean isActive,
+			String securityQuestion, String securityAnswer) {
+		super();
+		this.userId = userId;
+		this.name = name;
+		this.username = username;
+		this.password = password;
+		this.eMail = eMail;
+		this.role = role;
+		this.isActive = isActive;
+		this.securityQuestion = securityQuestion;
+		this.securityAnswer = securityAnswer;
+	}
 	public int getUserId() {
 		return userId;
 	}
@@ -86,6 +99,80 @@ public class User {
 		this.securityAnswer = securityAnswer;
 	}
 	public User() {
+	}
+	
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((eMail == null) ? 0 : eMail.hashCode());
+		result = prime * result + (isActive ? 1231 : 1237);
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((securityAnswer == null) ? 0 : securityAnswer.hashCode());
+		result = prime * result + ((securityQuestion == null) ? 0 : securityQuestion.hashCode());
+		result = prime * result + userId;
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (eMail == null) {
+			if (other.eMail != null)
+				return false;
+		} else if (!eMail.equals(other.eMail))
+			return false;
+		if (isActive != other.isActive)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (role == null) {
+			if (other.role != null)
+				return false;
+		} else if (!role.equals(other.role))
+			return false;
+		if (securityAnswer == null) {
+			if (other.securityAnswer != null)
+				return false;
+		} else if (!securityAnswer.equals(other.securityAnswer))
+			return false;
+		if (securityQuestion == null) {
+			if (other.securityQuestion != null)
+				return false;
+		} else if (!securityQuestion.equals(other.securityQuestion))
+			return false;
+		if (userId != other.userId)
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", name=" + name + ", username=" + username + ", password=" + password
+				+ ", eMail=" + eMail + ", role=" + role + ", isActive=" + isActive + ", securityQuestion="
+				+ securityQuestion + ", securityAnswer=" + securityAnswer + "]";
 	}
 	
 	

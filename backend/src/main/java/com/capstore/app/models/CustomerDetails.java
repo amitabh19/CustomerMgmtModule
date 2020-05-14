@@ -39,6 +39,23 @@ public class CustomerDetails extends User {
     private Set<UserAddress> addresses;
     
     
+    
+    
+	public CustomerDetails(int userId, String name, String username, String password, String eMail, String role,
+			boolean isActive, String securityQuestion, String securityAnswer, String phoneNumber,
+			String alternatePhoneNumber, String alternateEmail, String address, Set<CommonFeedback> cCF,
+			Set<ProductFeedback> cPF, Set<Order> orders, Set<Cart> cC, Set<UserAddress> addresses) {
+		super(userId, name, username, password, eMail, role, isActive, securityQuestion, securityAnswer);
+		this.phoneNumber = phoneNumber;
+		this.alternatePhoneNumber = alternatePhoneNumber;
+		this.alternateEmail = alternateEmail;
+		this.address = address;
+		this.cCF = cCF;
+		this.cPF = cPF;
+		this.orders = orders;
+		this.cC = cC;
+		this.addresses = addresses;
+	}
 	public Set<Order> getOrders() {
 		return orders;
 	}
@@ -106,5 +123,84 @@ public class CustomerDetails extends User {
 	
 	public CustomerDetails() {
 	}
+	@Override
+	public String toString() {
+		return "CustomerDetails [phoneNumber=" + phoneNumber + ", alternatePhoneNumber=" + alternatePhoneNumber
+				+ ", alternateEmail=" + alternateEmail + ", address=" + address + ", cCF=" + cCF + ", cPF=" + cPF
+				+ ", orders=" + orders + ", cC=" + cC + ", addresses=" + addresses + "]";
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((address == null) ? 0 : address.hashCode());
+		result = prime * result + ((addresses == null) ? 0 : addresses.hashCode());
+		result = prime * result + ((alternateEmail == null) ? 0 : alternateEmail.hashCode());
+		result = prime * result + ((alternatePhoneNumber == null) ? 0 : alternatePhoneNumber.hashCode());
+		result = prime * result + ((cC == null) ? 0 : cC.hashCode());
+		result = prime * result + ((cCF == null) ? 0 : cCF.hashCode());
+		result = prime * result + ((cPF == null) ? 0 : cPF.hashCode());
+		result = prime * result + ((orders == null) ? 0 : orders.hashCode());
+		result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CustomerDetails other = (CustomerDetails) obj;
+		if (address == null) {
+			if (other.address != null)
+				return false;
+		} else if (!address.equals(other.address))
+			return false;
+		if (addresses == null) {
+			if (other.addresses != null)
+				return false;
+		} else if (!addresses.equals(other.addresses))
+			return false;
+		if (alternateEmail == null) {
+			if (other.alternateEmail != null)
+				return false;
+		} else if (!alternateEmail.equals(other.alternateEmail))
+			return false;
+		if (alternatePhoneNumber == null) {
+			if (other.alternatePhoneNumber != null)
+				return false;
+		} else if (!alternatePhoneNumber.equals(other.alternatePhoneNumber))
+			return false;
+		if (cC == null) {
+			if (other.cC != null)
+				return false;
+		} else if (!cC.equals(other.cC))
+			return false;
+		if (cCF == null) {
+			if (other.cCF != null)
+				return false;
+		} else if (!cCF.equals(other.cCF))
+			return false;
+		if (cPF == null) {
+			if (other.cPF != null)
+				return false;
+		} else if (!cPF.equals(other.cPF))
+			return false;
+		if (orders == null) {
+			if (other.orders != null)
+				return false;
+		} else if (!orders.equals(other.orders))
+			return false;
+		if (phoneNumber == null) {
+			if (other.phoneNumber != null)
+				return false;
+		} else if (!phoneNumber.equals(other.phoneNumber))
+			return false;
+		return true;
+	}
+	
+	
 
 }
