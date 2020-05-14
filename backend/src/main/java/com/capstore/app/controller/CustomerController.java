@@ -27,7 +27,11 @@ public void something()
 public void test()
 {
 }
-
+//amitabh ka func
+@RequestMapping("/")
+public String index() {            
+    return "first method";
+} 
 
 	
 }
