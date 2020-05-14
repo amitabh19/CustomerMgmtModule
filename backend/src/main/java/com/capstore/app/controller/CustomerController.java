@@ -34,4 +34,7 @@ public String index() {
 } 
 
 	
+public void function2(){
+	//next push
+}
 }
