@@ -10,24 +10,28 @@ import javax.persistence.Table;
 @Table(name = "product_feedback")
 public class ProductFeedback {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "feedback_Id")
 	private Integer feedbackId;
 	@Column(name = "feedback_subject")
     private String feedbackSubject;
 	@Column(name = "feedback_message")
     private String feedbackMessage;
-	
-	@Column(name="product_id")
-	private int productId;
-
-	public ProductFeedback(String feedbackSubject, String feedbackMessage,int productId) {
+    @Column(name = "product_id")
+    private int productId;
+    @Column(name = "user_id")
+    private int userId;	
+    
+    public ProductFeedback(String feedbackSubject, String feedbackMessage) {
 		super();
 		this.feedbackSubject = feedbackSubject;
 		this.feedbackMessage = feedbackMessage;
-		this.productId = productId;
-		
 	}
+    
+	public Integer getFeedbackId() {
+		return feedbackId;
+	}
+
 
 
 	public void setFeedbackId(Integer feedbackId) {
@@ -60,9 +64,33 @@ public class ProductFeedback {
 
 
 
-	
+	public int getProductId() {
+		return productId;
+	}
+
+
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
+
+
+	public int getUserId() {
+		return userId;
+	}
+
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+
+
 	public ProductFeedback() {
 	} 
      
      
 }
+
