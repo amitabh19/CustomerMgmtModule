@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.capstore.app.service;
 
 import javax.transaction.Transactional;
 

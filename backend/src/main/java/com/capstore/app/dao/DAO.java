@@ -1,4 +1,4 @@
-package com.example.demo.dao;
+package com.capstore.app.dao;
 
 import com.capstore.app.models.ProductFeedback;
 
