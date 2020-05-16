@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from '../customer.service';
 import { ProductFeedback } from '../ProductFeedback';
 import { Router } from '@angular/router';
+import { collectExternalReferences } from '@angular/compiler';
 
 @Component({
   selector: 'app-product-feedback',
@@ -16,12 +17,15 @@ export class ProductFeedbackComponent implements OnInit {
   ProductFeedbackForm: FormGroup;
   msg1:any;
   message:boolean;
+  check:boolean=false;
   
 
   constructor(private formBuilder: FormBuilder, private customerService:CustomerService, private router: Router) { }
 
   ngOnInit() {
     this.ProductFeedbackForm=this.formBuilder.group({
+      userId:[{value: '101', disabled:false}],
+      productId:[{value: '786', disabled: false}],
       feedbackSubject:['',[Validators.required,Validators.maxLength(30),Validators.minLength(15)]],
       feedbackMessage:['',[Validators.required,Validators.maxLength(50),Validators.minLength(25)]]
     });
@@ -29,11 +33,6 @@ export class ProductFeedbackComponent implements OnInit {
 
   productFeedback(){
     this.save();
-  }
-
-  newProductFeedback(): void{
-    this.submitted=false;
-    this.ProductFeedback=new ProductFeedback();
   }
 
   save(){
@@ -44,14 +43,14 @@ export class ProductFeedbackComponent implements OnInit {
     else{
     let feedbackSubject=this.ProductFeedbackForm.controls.feedbackSubject.value;
     let feedbackMessage=this.ProductFeedbackForm.controls.feedbackMessage.value;
-    
-    this.customerService.create(this.ProductFeedback).subscribe(data => 
+    let userId= this.ProductFeedbackForm.controls.userId.value;
+    let productId=this.ProductFeedbackForm.controls.productId.value;
+    //console.log(this.ProductFeedbackForm.value);
+    this.customerService.create(this.ProductFeedbackForm.value).subscribe(data => 
       {
-        this.ProductFeedback=new ProductFeedback();
         this.message=data;
-        prompt("Feedback submitted");
-        console.log(this.message);
-        
+        alert("Feedback submitted");
+        //console.log(this.message);        
       },
       err => 
       { console.log(err.stack);

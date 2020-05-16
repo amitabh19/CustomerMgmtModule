@@ -23,10 +23,14 @@ public class ProductFeedback {
     @Column(name = "user_id")
     private int userId;	
     
-    public ProductFeedback(String feedbackSubject, String feedbackMessage) {
+   public ProductFeedback(Integer feedbackId, String feedbackSubject, String feedbackMessage, int productId,
+			int userId) {
 		super();
+		this.feedbackId = feedbackId;
 		this.feedbackSubject = feedbackSubject;
 		this.feedbackMessage = feedbackMessage;
+		this.productId = productId;
+		this.userId = userId;
 	}
     
 	public Integer getFeedbackId() {

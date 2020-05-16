@@ -35,9 +35,9 @@ public class CustomerDetails extends User {
     Set<ProductFeedback> cPF;
     
     
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="user_id")
-	Set<Order> orders;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="user_id")
+    Set<Order> orders;
 	 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")
