@@ -9,7 +9,8 @@ import { HomePageComponent } from './home-page/home-page.component'
 import {Routes,RouterModule} from '@angular/router';
 import { ProductFeedbackComponent } from './product-feedback/product-feedback.component';
 const appRoutes:Routes =[
-    {path:'showHome',component:HomePageComponent}
+    {path:'showHome',component:HomePageComponent},
+    {path:'showProductFeedbackForm',component:ProductFeedbackComponent}
 ]
 @NgModule({
     imports: [
@@ -24,7 +25,7 @@ const appRoutes:Routes =[
     ],
     declarations: [
         AppComponent,
-		ProductFeedbackComponent,
+	ProductFeedbackComponent,
         HomePageComponent
         
        
