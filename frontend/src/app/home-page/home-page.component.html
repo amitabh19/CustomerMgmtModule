@@ -1,3 +1,4 @@
+ <!-- Code To show nav bar -->
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <a class="sliderButton" (click)="showMenu(menu)">&#8801;
   </a>
@@ -12,15 +13,24 @@
   </div>
 </nav>
 
+<!-- Code To show sliding menu -->
 <div class="menu" #menu>
   <h2 >Menu
     <a class="close" (click)="closeMenu(menu)" style="margin-left: 50px; width: max-content; float:right; padding: 0;"> &#x2716;</a>
   </h2>
- 
+  <a routerLink="showHome">Home</a>
   <a> Customer Details</a><br>
   <a>Wish List</a>
   <a>Cart</a>
   <a>Common Feedback</a>
-  <a>Product Feedback</a>
   <a>Orders</a>
+</div>
+
+<!-- Code To show the List of Products -->
+<div class="container">
+  <div class="row">
+    <div *ngFor="let p of products" class="col-md-3 offset-md-1 productList">
+      <a (click)="sendProduct(p)" >{{p.productName}}</a>
+    </div>
+  </div>
 </div>

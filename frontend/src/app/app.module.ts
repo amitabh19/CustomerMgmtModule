@@ -6,11 +6,13 @@ import {HttpClientModule} from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import {ReactiveFormsModule,FormBuilder} from '@angular/forms';;
 import { HomePageComponent } from './home-page/home-page.component'
-import {Routes,RouterModule} from '@angular/router';
-import { ProductFeedbackComponent } from './product-feedback/product-feedback.component';
+import {Routes,RouterModule} from '@angular/router';;
+import { ProductPageComponent } from './product-page/product-page.component';
+import { CustomerCartComponent } from './customer-cart/customer-cart.component';
+
 const appRoutes:Routes =[
     {path:'showHome',component:HomePageComponent},
-    {path:'showProductFeedbackForm',component:ProductFeedbackComponent}
+    {path:'showProduct',component:ProductPageComponent}
 ]
 @NgModule({
     imports: [
@@ -20,15 +22,12 @@ const appRoutes:Routes =[
         ReactiveFormsModule,
         HttpModule,
         RouterModule.forRoot(appRoutes)
-     
-        
     ],
     declarations: [
         AppComponent,
-	ProductFeedbackComponent,
-        HomePageComponent
-        
-       
+        HomePageComponent,
+        ProductPageComponent ,
+        CustomerCartComponent       
 		],
     providers: [],
     bootstrap: [AppComponent]

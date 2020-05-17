@@ -51,3 +51,10 @@ html, body {
 .searchBar{
     float: right;
 }
+.productList{
+    height: 150px;
+    padding: 30px;
+    box-shadow: 0px 10px 15px grey;
+    margin-top: 20px;
+   
+}
