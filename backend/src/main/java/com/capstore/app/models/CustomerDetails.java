@@ -12,8 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Table(name = "customer_details")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomerDetails extends User {
 	
     @Column(name = "phone_number")
@@ -66,6 +69,27 @@ public class CustomerDetails extends User {
 	}
 	
 	
+	
+	
+	public CustomerDetails(int userId, String name, String username, String password, String eMail, String role,
+			boolean isActive, String securityQuestion, String securityAnswer, String phoneNumber,
+			String alternatePhoneNumber, String alternateEmail, String address, Set<CommonFeedback> cCF,
+			Set<ProductFeedback> cPF, Set<Order> orders, Set<Cart> cC, Set<UserAddress> addresses) {
+		super(userId, name, username, password, eMail, role, isActive, securityQuestion, securityAnswer);
+		this.phoneNumber = phoneNumber;
+		this.alternatePhoneNumber = alternatePhoneNumber;
+		this.alternateEmail = alternateEmail;
+		this.address = address;
+		this.cCF = cCF;
+		this.cPF = cPF;
+		this.orders = orders;
+		this.cC = cC;
+		this.addresses = addresses;
+	}
+
+
+
+
 	public Set<Order> getOrders() {
 		return orders;
 	}

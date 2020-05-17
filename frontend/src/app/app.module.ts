@@ -12,7 +12,8 @@ import { CustomerCartComponent } from './customer-cart/customer-cart.component';
 
 const appRoutes:Routes =[
     {path:'showHome',component:HomePageComponent},
-    {path:'showProduct',component:ProductPageComponent}
+    {path:'showProduct',component:ProductPageComponent},
+    {path:'',component:HomePageComponent},
 ]
 @NgModule({
     imports: [
