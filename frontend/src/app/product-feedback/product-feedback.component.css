@@ -1,46 +1,11 @@
 /* Add border to the div content */
 * {box-sizing: border-box}
 
-/* Full-width input fields */
-  input[type=text],textarea{
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  width: 100%;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-
-}
-
-/* Changing the style on focusing the input */
-input[type=text]:focus,textarea:focus {
-  background-color: #ddd;
-  outline: none;
-}
-
 /* add style to horizontal line */
 hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
-
-/* Set a style for all buttons */
-button {
-  background-color: rgb(67, 201, 85);
-  color: white;
-  padding: 14px 20px;
-  margin-left: 30%;
-  border: none;
-  cursor: pointer;
-  align-content: center;
-  width: 20%;
-  font-size: medium;
-}
-
-button:hover {
-  opacity:1;
-}
-
 
 /* Add padding to container elements */
 .container {
@@ -48,6 +13,7 @@ button:hover {
   width: 50%;
   height: 50%;
   margin-left: 25%;
+  margin-top: 3%;
   background:linear-gradient(to top left, #66ccff 0%, #ffff99 100%);
 }
 
@@ -61,8 +27,9 @@ h1,p{
   text-align: center;
 }
 label,p{
-  font-weight: bold;
   padding: 5px;
-
 }
 
+.error{
+  margin-left: 5%;
+}

@@ -6,7 +6,7 @@
     <hr><br>
     <div class="form-group" [hidden]="!check">
       <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="col-lg-5 col-md-5 col-sm-5">
           <label for="userId"><b>Feedback Details</b></label>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-5">
@@ -17,10 +17,10 @@
     </div>
     <div class="form-group">
       <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="col-lg-4 col-md-4 col-sm-4">
           <label for="feedbackSubject"><b>Feedback Subject</b></label>
         </div>
-        <div class="col-lg-5 col-md-5 col-sm-5">
+        <div class="col-lg-8 col-md-8 col-sm-8">
           <input type="text" class="form-control" formControlName="feedbackSubject" placeholder="Enter a short heading for your feedback">
         </div>
         <div *ngIf="submitted && ProductFeedbackForm.controls.feedbackSubject.errors" class="error">
@@ -39,10 +39,10 @@
     <br>
     <div class="form-group">
       <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="col-lg-4 col-md-4 col-sm-4">
           <label for="feedbackMessage"><b>Feedback Message</b></label>
         </div>
-        <div class="col-lg-5 col-md-5 col-sm-5">
+        <div class="col-lg-8 col-md-8 col-sm-8">
           <textarea class="form-control" formControlName="feedbackMessage" rows="4" cols="50"></textarea>
         </div>
         <div *ngIf="submitted && ProductFeedbackForm.controls.feedbackMessage.errors" class="error">
@@ -59,10 +59,10 @@
       </div>
     </div>
     <br>
-    <div class="offset-lg-4 col-lg-4 offset-md-4 col-md-4 offset-sm-4 col-sm-4">
+    <div class="offset-lg-4 col-lg-5 offset-md-4 col-md-4 offset-sm-4 col-sm-5">
       
-      <button class="btn btn-success" type="submit">Submit</button>
-      <button class="btn btn-danger" type="reset" style="margin-left: 5px;">Reset</button>
+      <button class="btn btn-success" type="submit">Submit</button>&nbsp;&nbsp;
+      <button class="btn btn-danger" type="reset" > &nbsp;Reset&nbsp; </button>
       <br>
 
     </div><br>
