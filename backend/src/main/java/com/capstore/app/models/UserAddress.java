@@ -33,13 +33,11 @@ public class UserAddress {
 	@Column(name = "pincode")
     private int pinCode;
 	
-	@Column(name = "user_id")
-    private int userId;  //(Foreign Key)
-    
+	
 	
 	
 	public UserAddress(String address_line1, String address_line2, String district, String state, String landmark,
-			int pinCode, int userId) {
+			int pinCode) {
 		super();
 		this.address_line1 = address_line1;
 		this.address_line2 = address_line2;
@@ -47,7 +45,7 @@ public class UserAddress {
 		this.state = state;
 		this.landmark = landmark;
 		this.pinCode = pinCode;
-		this.userId = userId;
+		
 	}
 	
 	public int getAddressId() {
@@ -92,12 +90,7 @@ public class UserAddress {
 	public void setPinCode(int pinCode) {
 		this.pinCode = pinCode;
 	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+	
 	public UserAddress() {
 	}
     

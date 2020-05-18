@@ -3,7 +3,6 @@ package com.capstore.app.models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,32 +10,24 @@ import javax.persistence.Table;
 @Table(name = "product_feedback")
 public class ProductFeedback {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	@Column(name = "feedback_Id")
 	private Integer feedbackId;
 	@Column(name = "feedback_subject")
     private String feedbackSubject;
 	@Column(name = "feedback_message")
     private String feedbackMessage;
-    @Column(name = "product_id")
-    private int productId;
-    @Column(name = "user_id")
-    private int userId;	
-    
-   public ProductFeedback(Integer feedbackId, String feedbackSubject, String feedbackMessage, int productId,
-			int userId) {
+	
+	@Column(name="product_id")
+	private int productId;
+
+	public ProductFeedback(String feedbackSubject, String feedbackMessage,int productId) {
 		super();
-		this.feedbackId = feedbackId;
 		this.feedbackSubject = feedbackSubject;
 		this.feedbackMessage = feedbackMessage;
 		this.productId = productId;
-		this.userId = userId;
+		
 	}
-    
-	public Integer getFeedbackId() {
-		return feedbackId;
-	}
-
 
 
 	public void setFeedbackId(Integer feedbackId) {
@@ -67,6 +58,15 @@ public class ProductFeedback {
 		this.feedbackMessage = feedbackMessage;
 	}
 
+	public ProductFeedback() {
+	}
+
+
+	@Override
+	public String toString() {
+		return "ProductFeedback [feedbackId=" + feedbackId + ", feedbackSubject=" + feedbackSubject
+				+ ", feedbackMessage=" + feedbackMessage + ", productId=" + productId + "]";
+	}
 
 
 	public int getProductId() {
@@ -74,28 +74,14 @@ public class ProductFeedback {
 	}
 
 
-
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
 
 
-
-	public int getUserId() {
-		return userId;
-	}
-
-
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-
-
-	public ProductFeedback() {
+	public Integer getFeedbackId() {
+		return feedbackId;
 	} 
      
      
 }
-

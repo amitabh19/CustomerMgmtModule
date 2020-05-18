@@ -1,6 +1,7 @@
 package com.capstore.app.models;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Generated;
 import javax.persistence.CascadeType;
@@ -32,7 +33,9 @@ public class User {
 	private String securityAnswer;
 	
 	
-	
+	 
+	 
+
 	public User(int userId, String name, String username, String password, String eMail, String role, boolean isActive,
 			String securityQuestion, String securityAnswer) {
 		super();
@@ -45,6 +48,7 @@ public class User {
 		this.isActive = isActive;
 		this.securityQuestion = securityQuestion;
 		this.securityAnswer = securityAnswer;
+	
 	}
 	public User(String name, String username, String password, String eMail, String role, boolean isActive,
 			String securityQuestion, String securityAnswer) {
@@ -57,7 +61,9 @@ public class User {
 		this.isActive = isActive;
 		this.securityQuestion = securityQuestion;
 		this.securityAnswer = securityAnswer;
+	
 	}
+
 	public int getUserId() {
 		return userId;
 	}
