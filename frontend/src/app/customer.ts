@@ -18,8 +18,8 @@ export class Customer {
         cartId:Number,
         type:String,
         quantity:Number,
-        productId:Number,
-        userId:Number
+        productId:Number
+        
     }];
    // private feedbacks:[];
     //private productFeedbacks:[];

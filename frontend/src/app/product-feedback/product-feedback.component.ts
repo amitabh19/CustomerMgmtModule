@@ -24,10 +24,10 @@ export class ProductFeedbackComponent implements OnInit {
 
   ngOnInit() {
     this.ProductFeedbackForm=this.formBuilder.group({
-      userId:[{value: '101', disabled:false}],
-      productId:[{value: '786', disabled: false}],
+      userId:[{value:'3', disabled:false}],
       feedbackSubject:['',[Validators.required,Validators.maxLength(30),Validators.minLength(15)]],
-      feedbackMessage:['',[Validators.required,Validators.maxLength(50),Validators.minLength(25)]]
+      feedbackMessage:['',[Validators.required,Validators.maxLength(50),Validators.minLength(25)]],
+      productId:[{value:'22', disabled: false}]
     });
   }
 
@@ -45,16 +45,16 @@ export class ProductFeedbackComponent implements OnInit {
     let feedbackMessage=this.ProductFeedbackForm.controls.feedbackMessage.value;
     let userId= this.ProductFeedbackForm.controls.userId.value;
     let productId=this.ProductFeedbackForm.controls.productId.value;
-    //console.log(this.ProductFeedbackForm.value);
-    this.customerService.create(this.ProductFeedbackForm.value).subscribe(data => 
-      {
-        this.message=data;
-        alert("Feedback submitted");
-        //console.log(this.message);        
-      },
-      err => 
-      { console.log(err.stack);
-      });
+    console.log(this.ProductFeedbackForm.value);
+     this.customerService.create(this.ProductFeedbackForm.value,this.ProductFeedbackForm.controls.userId.value).subscribe(data => 
+        {
+          this.message=data;
+          alert("Feedback submitted");
+          //console.log(this.message);        
+        },
+        err => 
+        { console.log(err.stack);
+        });
     }
   }
 

@@ -43,16 +43,18 @@ html, body {
     font-weight: normal;
     padding: 20px;
     padding-left: 10px;
+    color: white;
 }
 .menu a:hover{
-    font-weight: bolder;
+    font-weight: bold;
     background-color: #676764;
+    text-decoration: none;
 }
 .searchBar{
     float: right;
 }
 .productList{
-    height: 320px;
+    height: 150px;
     padding: 30px;
     box-shadow: 0px 10px 15px grey;
     margin-top: 20px;

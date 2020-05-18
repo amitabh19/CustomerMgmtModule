@@ -1,7 +1,9 @@
 <div class ="container col-md-4">
+
+  <img [src]="location" height="300px" width=100%> <br><br>
   <form class="form">
-    <input type="number" class="form-control" placeholder="Enter Quantity" #qty>
-    <input type="submit" class="btn btn-warning" value = "Add To Cart" (click)="sendToCart(qty.value)">
-    <input type="submit" class="btn btn-warning" value = "Add To Wishlist" (click)="sendToWishL(qty.value)">
+    <input type="number" class="form-control" placeholder="Enter Quantity" #qty><br>
+    <input type="submit" class="btn btn-warning form-control" value = "Add To Cart" (click)="sendToCart(qty.value)"><br><br>
+    <input type="submit" class="btn btn-warning form-control" value = "Add To Wishlist" (click)="sendToWishL(qty.value)"><br><br>
   </form>
 </div>

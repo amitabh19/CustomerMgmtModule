@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import {CustomerService} from '../customer.service';
 import {Router} from '@angular/router';
+import { Customer } from '../customer';
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
@@ -10,7 +11,7 @@ import {Router} from '@angular/router';
 export class HomePageComponent implements OnInit {
 
   products:Product[];
-
+  customer:Customer;
   constructor(private _customerService:CustomerService ,private _router:Router) { }
 
   ngOnInit() {
@@ -18,6 +19,13 @@ export class HomePageComponent implements OnInit {
       console.log(products);
       this.products= products;
     })
+
+    this._customerService.getCustomerById().subscribe((customer)=>{
+      this.customer=customer;
+      this._customerService.setCustomer(this.customer);
+      
+    })
+
   }
   showMenu(menu){
     menu.style.display="block";  

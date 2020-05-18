@@ -12,9 +12,12 @@ export class ProductPageComponent implements OnInit {
   product:Product;
   constructor(private _customerService:CustomerService) { }
   customer:Customer;
+  location:String;
   ngOnInit() {
     
     this.product=this._customerService.getProduct()
+    this.location= this.product.productImage;
+    console.log("location is:"+this.location);
     console.log("Product receieved is:"+this.product);
     this._customerService.getCustomerById().subscribe((customer)=>{
       this.customer=customer;
@@ -61,8 +64,6 @@ export class ProductPageComponent implements OnInit {
     this._customerService.addToCart(quantity,customerJson,productJson).subscribe((customer)=>{
       console.log(customer);
     });
-
-
   }
 
   sendToWishL(quantity){
@@ -104,7 +105,7 @@ export class ProductPageComponent implements OnInit {
     this._customerService.sendToWishL(quantity,customerJson,productJson).subscribe((customer)=>{
       console.log(customer);
     });
-    
-
   }
+
+
 }

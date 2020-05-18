@@ -1,3 +1,22 @@
-<p>
-  customer-cart works!
-</p>
+
+<div class="container cartData">
+  <table class="table table-striped">
+      <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Delete Button</th>
+        <th><button class="btn btn-warning">Check Out</button></th>
+      </tr>
+      <tr *ngFor="let c of customer.customerCarts; let i = index" [attr.data-index]="i">
+          <td>
+            {{products[i].productName}}
+          </td>
+          <td>
+            {{c.quantity}}
+          </td>
+          <td>
+            <button class="btn btn-danger">Delete</button>
+          </td>
+      </tr>
+  </table>
+</div>

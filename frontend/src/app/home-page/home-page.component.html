@@ -1,36 +1,13 @@
- <!-- Code To show nav bar -->
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  <a class="sliderButton" (click)="showMenu(menu)">&#8801;
-  </a>
-  <div class="container">
-    <h2>Capstore</h2>
-    <div class="col-md-6 searchBar">
-            <input type="text" class="form-control" placeholder="search">
-            
-    </div>
-    <input type="submit" class="btn btn-warning" value="search">
-   
-  </div>
-</nav>
-
-<!-- Code To show sliding menu -->
-<div class="menu" #menu>
-  <h2 >Menu
-    <a class="close" (click)="closeMenu(menu)" style="margin-left: 50px; width: max-content; float:right; padding: 0;"> &#x2716;</a>
-  </h2>
-  <a routerLink="showHome">Home</a>
-  <a> Customer Details</a><br>
-  <a>Wish List</a>
-  <a>Cart</a>
-  <a>Common Feedback</a>
-  <a>Orders</a>
-</div>
+ 
 
 <!-- Code To show the List of Products -->
 <div class="container">
   <div class="row">
     <div *ngFor="let p of products" class="col-md-3 offset-md-1 productList">
-      <a (click)="sendProduct(p)" >{{p.productName}}</a>
+      <a (click)="sendProduct(p)" >
+        <img [src]="p.productImage" width="100%" height="200px">
+        {{p.productName}}
+      </a>
     </div>
   </div>
 </div>
