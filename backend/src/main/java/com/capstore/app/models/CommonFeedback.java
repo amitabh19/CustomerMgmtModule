@@ -18,14 +18,31 @@ public class CommonFeedback {
     private String feedbackSubject;
 	@Column(name = "feedback_message")
     private String feedbackMessage;
+	@Column(name = "product_id")
+	private int productId;
+	@Column(name = "user_id")
+	private int userId;	
+	@Column(name = "request_approved")
+	private boolean requestApproved;
+	@Column(name = "response_approved")
+	private boolean responseApproved;
+	@Column(name = "response_message")
+    private String responseMessage;
 	
 	
-	
-    public CommonFeedback(String feedbackSubject, String feedbackMessage) {
+    public CommonFeedback(int feedbackId, String feedbackSubject, String feedbackMessage, int productId, int userId,
+			boolean requestApproved, boolean responseApproved, String responseMessage) {
 		super();
+		this.feedbackId = feedbackId;
 		this.feedbackSubject = feedbackSubject;
 		this.feedbackMessage = feedbackMessage;
+		this.productId = productId;
+		this.userId = userId;
+		this.requestApproved = requestApproved;
+		this.responseApproved = responseApproved;
+		this.responseMessage=responseMessage;
 	}
+	
 	//private int feedbackForUserId;  //(Foreign Key)
 	public int getFeedbackId() {
 		return feedbackId;

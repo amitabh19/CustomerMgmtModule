@@ -44,7 +44,7 @@ public class MerchantDetails extends User {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
-	private Set<ProductFeedback> pF;
+	private Set<CommonFeedback> cCF;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
@@ -58,7 +58,7 @@ public class MerchantDetails extends User {
 
 	public MerchantDetails(String name, String username, String password, String eMail, String role, boolean isActive,
 			String securityQuestion, String securityAnswer, String phoneNumber, String alternatePhoneNumber,
-			String alternateEmail, Set<Product> products, Set<UserAddress> addresses, Set<ProductFeedback> pF,
+			String alternateEmail, Set<Product> products, Set<UserAddress> addresses, Set<CommonFeedback> cCF,
 			Set<Coupon> coupons, boolean isApproved, int rating, int inventoryId) {
 		super(name, username, password, eMail, role, isActive, securityQuestion, securityAnswer);
 		this.phoneNumber = phoneNumber;
@@ -66,7 +66,7 @@ public class MerchantDetails extends User {
 		this.alternateEmail = alternateEmail;
 		this.products = products;
 		this.addresses = addresses;
-		this.pF = pF;
+		this.cCF = cCF;
 		this.coupons = coupons;
 		this.isApproved = isApproved;
 		this.rating = rating;
@@ -74,7 +74,7 @@ public class MerchantDetails extends User {
 
 	public MerchantDetails(String name, String username, String password, String eMail, String role, boolean isActive,
 			String securityQuestion, String securityAnswer, String phoneNumber, String alternatePhoneNumber,
-			String alternateEmail, Set<Product> products, Set<UserAddress> addresses, Set<ProductFeedback> pF,
+			String alternateEmail, Set<Product> products, Set<UserAddress> addresses, Set<CommonFeedback> cCF,
 			Set<Coupon> coupons, boolean isApproved, int rating) {
 		super(name, username, password, eMail, role, isActive, securityQuestion, securityAnswer);
 		this.phoneNumber = phoneNumber;
@@ -82,19 +82,19 @@ public class MerchantDetails extends User {
 		this.alternateEmail = alternateEmail;
 		this.products = products;
 		this.addresses = addresses;
-		this.pF = pF;
+		this.cCF = cCF;
 		this.coupons = coupons;
 		this.isApproved = isApproved;
 		this.rating = rating;
 
 	}
 
-	public Set<ProductFeedback> getpF() {
-		return pF;
+	public Set<CommonFeedback> getcCF() {
+		return cCF;
 	}
 
-	public void setpF(Set<ProductFeedback> pF) {
-		this.pF = pF;
+	public void setcCF(Set<CommonFeedback> cCF) {
+		this.cCF = cCF;
 	}
 
 	public String getPhoneNumber() {
@@ -168,12 +168,12 @@ public class MerchantDetails extends User {
 		this.rating = rating;
 	}
 
-	public Set<ProductFeedback> getProductFeedback() {
-		return pF;
+	public Set<CommonFeedback> getCommonFeedback() {
+		return cCF;
 	}
 
-	public void setProductFeedback(Set<ProductFeedback> productFeedback) {
-		this.pF = productFeedback;
+	public void setCommonFeedback(Set<CommonFeedback> CommonFeedback) {
+		this.cCF = CommonFeedback;
 	}
 
 	public MerchantDetails() {
