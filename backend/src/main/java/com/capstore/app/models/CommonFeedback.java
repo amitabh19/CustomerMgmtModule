@@ -22,27 +22,35 @@ public class CommonFeedback {
 	private int productId;
 	@Column(name = "user_id")
 	private int userId;	
+	@Column(name = "request_flag")
+	private boolean requestFlag; //customer sets 1 when sending feedback
+	@Column(name = "response_flag")
+	private boolean responseFlag; //merchant sets 1 when responding 
 	@Column(name = "request_approved")
-	private boolean requestApproved;
+	private boolean requestApproved; //admin sets 1 when approved and ready to send to merchant
 	@Column(name = "response_approved")
-	private boolean responseApproved;
+	private boolean responseApproved; //admin sets 1 when approved and ready to send to customer
 	@Column(name = "response_message")
     private String responseMessage;
 	
 	
-    public CommonFeedback(int feedbackId, String feedbackSubject, String feedbackMessage, int productId, int userId,
-			boolean requestApproved, boolean responseApproved, String responseMessage) {
+
+	
+	public CommonFeedback(int feedbackId, String feedbackSubject, String feedbackMessage, int productId, int userId,
+			boolean requestFlag, boolean responseFlag, boolean requestApproved, boolean responseApproved,
+			String responseMessage) {
 		super();
 		this.feedbackId = feedbackId;
 		this.feedbackSubject = feedbackSubject;
 		this.feedbackMessage = feedbackMessage;
 		this.productId = productId;
 		this.userId = userId;
+		this.requestFlag = requestFlag;
+		this.responseFlag = responseFlag;
 		this.requestApproved = requestApproved;
 		this.responseApproved = responseApproved;
-		this.responseMessage=responseMessage;
+		this.responseMessage = responseMessage;
 	}
-	
 	//private int feedbackForUserId;  //(Foreign Key)
 	public int getFeedbackId() {
 		return feedbackId;
