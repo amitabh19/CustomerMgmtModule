@@ -199,6 +199,70 @@ public class CustomerController {
 		  
 		  return customerRepository.save(c);
 		  
-		}		
+		}
+
+
+	@RequestMapping("/product/{name}")
+	public Product getProductByName(@PathVariable String name)
+	{
+		return productService.ListProductsByName(name);
+	}
+	
+	@RequestMapping("/categories")
+	public List<String> categories()
+	{
+		List<Product> p=productService.ListProducts();
+		List<String> categories=new ArrayList<>();
+		for(Product p1:p)
+		{
+			categories.add(p1.getProductCategory());
+		}
+		Set<String> f1=new HashSet<>();
+		for(String s:categories)
+		{
+			f1.add(s);
+		}
+		
+		List<String> categories1=new ArrayList<>();
+		for(String s:f1)
+		{
+			categories1.add(s);
+		}
+		
+		System.out.println(categories1.toString());
+		return categories1;
+		
+	}
+	
+	@RequestMapping("/categories/{c}")
+	public List<Product> productByCategory(@PathVariable String c)
+	{
+		List<Product> p1=productService.ListProducts().stream().filter(n->n.getProductCategory().equals(c)).collect(Collectors.toList());
+		return p1;
+	}
+	
+	@RequestMapping("/productsName")
+	public List<String> getName()
+	{
+		List<String> names=new ArrayList<>();
+		List<Product> p1=productService.ListProducts();
+		
+		for(Product p:p1)
+		{
+			names.add(p.getProductName());
+		}
+		
+		System.out.println(names.toString());
+		return names;
+	}
+
+	@RequestMapping("test")
+	public Product addProduct()
+	{
+		Product p = new Product("Product1", "./assets/image3.jpg", 500, 4, 2, "B1", 100, "Wired Earphones", 2,
+				"Mobile Accessories", true, true, true);
+		Product p1=productService.addProduct(p);
+		return p1;
+	}		
 }
 

@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,800i" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+  
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <a class="sliderButton" (click)="showMenu(menu)">&#8801;
+  </a>
+  <div class="container">
+    <h2>Capstore</h2>
+    <div class="col-md-6 searchBar">
+      
+            <input type="text" class="form-control" [(ngModel)]="searchText" autocomplete="off" placeholder="search">
+            
+            
+    </div>
+    <input type="submit" class="btn btn-warning" value="search" (click)="search()">
+   
+    <a (click)="go()" style="float: right;">Categories</a>
+
+  </div>
+
+</nav>
+
+<div class="menu" #menu>
+  <h2 >Menu
+    <a class="close" (click)="closeMenu(menu)" style="margin-left: 50px; width: max-content; float:right; padding: 0;"> &#x2716;</a>
+  </h2>
+ 
+  <a> Customer Details</a><br>
+  <a>Wish List</a>
+  <a>Cart</a>
+  <a>Common Feedback</a>
+  <a>Product Feedback</a>
+  <a>Orders</a>
+</div>
+
+
+
+<div class="container">
+    <div *ngFor="let res of products1">
+    <div class="card">
+        <div class="container-fliud">
+            <div class="wrapper row">
+      
+        <div class="preview col-md-6">
+                    
+            <div class="preview-pic tab-content">
+                  <div class="tab-pane active" id="pic-1"><img class="images" src={{res.productImage}}></div>
+                
+            </div>
+            <div class="details col-md-6">
+                <h3 class="product-title">{{res.productName}}</h3>
+                <div class="rating">
+                    <div class="stars">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                </div>
+                <p class="product-description">Details about it: {{res.productInfo}}</p>
+                <h4 class="price">current price: <span>{{res.productPrice}}</span></h4>
+                <p class="product-discount">Discount : {{res.discount}}%</p>
+                <h5 class="brand">Brand: {{res.productBrand}}</h5>
+                <h5 class="colors">colors:
+                    <span class="color black"></span>
+                    <span class="color green"></span>
+                    <span class="color blue"></span>
+                </h5>
+
+                <div class="action">
+                    <button class="add-to-cart btn btn-default" type="button" (click)="Cart()">add to cart</button>
+                    <button class="like btn btn-default" type="button"><span class="fa fa-heart" (click)="wishList()"></span></button>
+                </div>
+        </div>
+        <hr>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
