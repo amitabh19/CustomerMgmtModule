@@ -10,6 +10,10 @@ import {Customer} from './customer';
 })
 export class CustomerService {
 
+	private product=new Product();
+	public setPName="";
+  public setP=new Array;
+
   private baseUrl:String = 'http://localhost:8082/customer';
   private headers = new Headers({'Content-Type':'application/json'});
   private options = new RequestOptions({headers:this.headers});
@@ -98,5 +102,50 @@ sendToWishL(quantity:Number,customerId:Customer,productId:Product){
   errorHandler(error:Response){
     return Observable.throw(error||"SERVER ERROR");  
   }
+  
+  getProductById(id:number)
+  {
+      return this.http.get<Product[]>(this.baseUrl+'/product/'+id).pipe(catchError(this.errorHandler));
+  }
+  
+  getProduct():Observable<Product[]>
+  {
+      return this.http.get<Product[]>(this.baseUrl+'/products').pipe(catchError(this.errorHandler));
+  }
+
+  getProductByName(name:string)
+  {
+      return this.http.get<Product>(this.baseUrl+'/product/'+name).pipe(catchError(this.errorHandler));;
+  }
+
+  getProductByCategory(category:string)
+  {
+      return this.http.get<Product[]>(this.baseUrl+'/categories/'+category).pipe(catchError(this.errorHandler));;
+  }
+
+  getProducts()
+  {
+    return this.http.get<Product[]>(this.baseUrl+'/products').pipe(catchError(this.errorHandler));
+  }
+
+  productGetter()
+  {
+    return this.product;
+  }
+   setter(product:Product)
+   {
+     this.product=product;
+   }
+
+   getCategory()
+   {
+     return this.http.get<any[]>(this.baseUrl+'/categories').pipe(catchError(this.errorHandler));
+   }
+
+   getName()
+   {
+    return this.http.get<any[]>(this.baseUrl+'/productsName').pipe(catchError(this.errorHandler)); 
+   }
+  
 
 }
