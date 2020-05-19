@@ -26,8 +26,7 @@ import com.capstore.app.repository.UserRepository;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
-
-	@Autowired
+@Autowired
 	private CustomerRepository customerRepository;
 	
 	@Autowired
@@ -35,6 +34,9 @@ public class Application implements CommandLineRunner {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private OrderRepository orderRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -48,8 +50,8 @@ public class Application implements CommandLineRunner {
 		// TODO Auto-generated method stub
 		
 		//merchant created
-				MerchantDetails merchant1 = new MerchantDetails("Merchant 1", "merchant1", "m1234", "merchant1@gmail.com", "Merchant", true, "What is your age", "21", "7895421237", null, null, null, null, null, null, true, 4);
-				MerchantDetails merchant2 = new MerchantDetails("Merchant 2", "merchant2", "m2234", "merchant2@gmail.com", "Merchant", true, "What is your age", "21", "7895221222", null, null, null, null, null, null, true, 3);
+				MerchantDetails merchant1 = new MerchantDetails("Merchant 1", "merchant1", "m1234", "merchant1@gmail.com", "Merchant", true, "What is your age", "21", "7895421237", null, null, null, null, null, true, 4);
+				MerchantDetails merchant2 = new MerchantDetails("Merchant 2", "merchant2", "m2234", "merchant2@gmail.com", "Merchant", true, "What is your age", "21", "7895221222", null, null, null, null, null, true, 3);
 				
 				merchantRepository.save(merchant1);
 				merchantRepository.save(merchant2);
@@ -96,6 +98,7 @@ public class Application implements CommandLineRunner {
 				merchantRepository.save(merchant1);
 				merchantRepository.save(merchant2);
 				
+				
 				//add user address
 				UserAddress address= new UserAddress("ABC", "DEF", "Indore", "MP", "Peepal ka ped", 12345);
 				Set<UserAddress> addressSet = new HashSet<UserAddress>();
@@ -110,6 +113,21 @@ public class Application implements CommandLineRunner {
 				merchant1.setAddresses(addressSet1);
 				merchantRepository.save(merchant1);
 				
+				//add product in order
+				Map<Integer,Integer> order1Product = new HashMap<Integer,Integer>();
+				order1Product.put(1, 10);
+				order1Product.put(2, 11);
+				order1Product.put(3, 20);
+				//add order in customer
+				Order orders=new Order(300,"Shipped",null,1,null);
+				orders.setProducts(order1Product);
+				orderRepository.save(orders);
+				Set<Order> orderSet1 = new HashSet<Order>();
+				orderSet1.add(orders);
+				customer1.setOrders(orderSet1);
+				customerRepository.save(customer1);
+				
 	}
+	
 	
 }

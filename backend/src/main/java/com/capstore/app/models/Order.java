@@ -26,6 +26,16 @@ public class Order {
 	@Column(name="order_id")
 	private int orderId;
 	
+	@Override
+	public String toString() {
+		return "Order [orderId=" + orderId + ", orderAmount=" + orderAmount + ", orderStatus=" + orderStatus
+				+ ", products=" + products + ", addressId=" + addressId + ", transaction=" + transaction + "]";
+	}
+
+	public Order() {
+		super();
+	}
+
 	@Column(name="order_amount")
 	private double orderAmount;
 	

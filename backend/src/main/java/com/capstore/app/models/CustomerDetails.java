@@ -105,7 +105,7 @@ public class CustomerDetails extends User {
 	}
 	
 	public Set<CommonFeedback> getFeedbacks() { return cCF; } 
-	public void setFeedbacks(Set<CommonFeedback> feedbacks) { this.cCF = feedbacks; }
+	public void setFeedbacks(Set<CommonFeedback> commonFeedbacks) { this.cCF = commonFeedbacks; }
 	
 	Set<UserAddress> getAddresses() { return addresses; } 
 	public void setAddresses(Set<UserAddress> addresses) { this.addresses = addresses; }

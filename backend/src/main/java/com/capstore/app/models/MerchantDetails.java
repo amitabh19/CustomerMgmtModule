@@ -41,9 +41,11 @@ public class MerchantDetails extends User{
 	 * 
 	 * @JoinColumn(name="user_id") private Set<UserAddress> addresses;
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name="merchant_id")
-	private Set<ProductFeedback> pF;
+	/*
+	 * @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	 * 
+	 * @JoinColumn(name="user_id") private Set<CommonFeedback> pF;
+	 */
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="user_id")
@@ -64,15 +66,14 @@ public class MerchantDetails extends User{
 
 	public MerchantDetails(String name, String username, String password, String eMail, String role, boolean isActive,
 			String securityQuestion, String securityAnswer, String phoneNumber, String alternatePhoneNumber,
-			String alternateEmail, Set<Product> products, Set<ProductFeedback> pF,
-			Set<Coupon> coupons, boolean isApproved, int rating, int inventoryId,Set<UserAddress>addresses) {
+			String alternateEmail, Set<Product> products,Set<Coupon> coupons, boolean isApproved, int rating, int inventoryId,Set<UserAddress>addresses) {
 		super(name, username, password, eMail, role, isActive, securityQuestion, securityAnswer);
 		this.phoneNumber = phoneNumber;
 		this.alternatePhoneNumber = alternatePhoneNumber;
 		this.alternateEmail = alternateEmail;
 		this.products = products;
 		this.addresses = addresses;
-		this.pF = pF;
+		//this.pF = pF;
 		this.coupons = coupons;
 		this.isApproved = isApproved;
 		this.rating = rating;
@@ -80,7 +81,7 @@ public class MerchantDetails extends User{
 	
 	public MerchantDetails(String name, String username, String password, String eMail, String role, boolean isActive,
 			String securityQuestion, String securityAnswer, String phoneNumber, String alternatePhoneNumber,
-			String alternateEmail, Set<Product> products, Set<UserAddress> addresses, Set<ProductFeedback> pF,
+			String alternateEmail, Set<Product> products, Set<UserAddress> addresses, 
 			Set<Coupon> coupons, boolean isApproved, int rating) {
 		super(name, username, password, eMail, role, isActive, securityQuestion, securityAnswer);
 		this.phoneNumber = phoneNumber;
@@ -88,20 +89,13 @@ public class MerchantDetails extends User{
 		this.alternateEmail = alternateEmail;
 		this.products = products;
 		//this.addresses = addresses;
-		this.pF = pF;
+		//this.pF = pF;
 		this.coupons = coupons;
 		this.isApproved = isApproved;
 		this.rating = rating;
 		
 	}
 
-	public Set<ProductFeedback> getpF() {
-		return pF;
-	}
-
-	public void setpF(Set<ProductFeedback> pF) {
-		this.pF = pF;
-	}
 	
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -144,12 +138,12 @@ public class MerchantDetails extends User{
 		this.rating = rating;
 	}
 	
-	public Set<ProductFeedback> getProductFeedback() {
-		return pF;
-	}
-	public void setProductFeedback(Set<ProductFeedback> productFeedback) {
-		this.pF = productFeedback;
-	}
+//	public Set<CommonFeedback> getCommonFeedback() {
+//		return pF;
+//	}
+//	public void setCommonFeedback(Set<CommonFeedback> productFeedback) {
+//		this.pF = productFeedback;
+//	}
 	public MerchantDetails() {
 	}
 	
