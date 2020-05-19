@@ -41,16 +41,26 @@ public class CustomerController {
 	
 
 	@Autowired
-	
+	private MerchantRepository merchantRepository;
 	
 	@RequestMapping("/customers")
-	public List<CustomerDetails> geAllMerchant() {
+	public List<CustomerDetails> getAllCustomers() {
 		return customerRepository.findAll(); 
 	}
 	
-	@RequestMapping("customer/{id}")
-	public CustomerDetails getMerchantById(@PathVariable int id) {
+	@RequestMapping("/customer/{id}")
+	public CustomerDetails getCustomerById(@PathVariable int id) {
 		return customerRepository.getOne(id);
+	}
+	
+	@RequestMapping("/merchants")
+	public List<MerchantDetails> getAllMerchants(){
+		return merchantRepository.findAll();
+	}
+	
+	@GetMapping("/merchant/{id}")
+	public MerchantDetails getMerchantById(@PathVariable int id) {
+		return merchantRepository.getOne(id);
 	}
 	
 	@RequestMapping("products")
