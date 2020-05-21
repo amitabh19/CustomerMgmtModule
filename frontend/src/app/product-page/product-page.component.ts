@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import {CustomerService} from '../customer.service';
 import { Customer } from '../customer';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
@@ -10,9 +11,11 @@ import { Customer } from '../customer';
 export class ProductPageComponent implements OnInit {
 
   product:Product;
-  constructor(private _customerService:CustomerService) { }
+  constructor(private _customerService:CustomerService, private router:Router) { }
   customer:Customer;
   location:String;
+  success:String;
+  success1:String;
   ngOnInit() {
     
     this.product=this._customerService.getProduct()
@@ -62,8 +65,25 @@ export class ProductPageComponent implements OnInit {
 
     //send to cart service function
     this._customerService.addToCart(quantity,customerJson,productJson).subscribe((customer)=>{
+      this.customer = customer;
       console.log(customer);
     });
+    this._customerService.setCustomer(this.customer);
+    this.success = "product added to cart";
+    //this.router.navigate(['showCart']);
+    
+  }
+
+  goToCart()
+  {
+    this._customerService.setCustomer(this.customer);
+    this.router.navigate(['showCart']);
+  }
+
+  goToWish()
+  {
+    this._customerService.setCustomer(this.customer);
+    this.router.navigate(['showWishlist']);
   }
 
   sendToWishL(quantity){
@@ -105,6 +125,7 @@ export class ProductPageComponent implements OnInit {
     this._customerService.sendToWishL(quantity,customerJson,productJson).subscribe((customer)=>{
       console.log(customer);
     });
+    this.success = "product added to wishlist";
   }
 
 

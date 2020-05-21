@@ -14,6 +14,7 @@ import {ProductFeedbackComponent} from './product-feedback/product-feedback.comp
 import {CustomerDetailsComponent} from './customer-details/customer-details.component';
 
 const appRoutes:Routes =[
+    {path:'',component:HomePageComponent},
     {path:'showHome',component:HomePageComponent},
     {path:'showProduct',component:ProductPageComponent},
     {path:'showCart',component:CustomerCartComponent},

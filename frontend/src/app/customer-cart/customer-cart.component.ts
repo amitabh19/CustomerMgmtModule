@@ -3,6 +3,7 @@ import {CustomerService} from '../customer.service';
 import { Customer } from '../customer';
 import { Product } from '../product';
 import { ThrowStmt } from '@angular/compiler';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-customer-cart',
   templateUrl: './customer-cart.component.html',
@@ -10,74 +11,82 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class CustomerCartComponent implements OnInit {
 
-  constructor(private _customerService:CustomerService) { }
-  customer:Customer;
-  customer1:Customer;
+  constructor(private _customerService:CustomerService, private router: Router) { }
+    
+  customer1 = new Customer;
+  customerr = new Customer;
+  cust = new Customer;
   products:Product[]=[];
-  dataRefresher:any;
+  products1:Product[]=[];
+  
+  render : Boolean = false;
   ngOnInit() {
-    this.getData(true);
-    this.refreshData();   
+    this._customerService.getCustomerByIdBC().then((customer)=>{
+      this.customer1 = customer;
+      this.customerr = customer;
+      this.cust = customer;
+      console.log(customer);
+    })
+    console.log("yo");
+    this._customerService.getProductsFromCart().then((product)=>{
+      this.products = product;
+      console.log(this.products);
+    }).then((temp)=>
+    {
+      this.getData();
+    }
+    )
   }
 
-  getData(setPageFlag){
-
-    console.log(this._customerService.getCustomer());
-    this.customer=this._customerService.getCustomer();
-    this.customer1=this.customer;
-    console.log("The customer getter is: "+this.customer1)
-
-    console.log("initial cart")
-   
-    for(var ca of this.customer1.customerCarts){
-      console.log(ca);
-    }
-
-    for(var c =0;c< this.customer1.customerCarts.length;c++){
-      if(this.customer1.customerCarts[c].type=="wishlist"){
-         this.customer1.customerCarts.splice(c,1);
-         c=c-1;
+  setRender()
+  {
+    this.render = true;
+  }
+  getData(){
+    
+    for(var t =0; t< this.customerr.customerCarts.length; t++){
+      if(this.customer1.customerCarts[t].type=="wishlist"){
+         this.customer1.customerCarts.splice(t,1);
+         t=t-1;
       }
     }
-    console.log("Final Cart");
     for(var ca of this.customer1.customerCarts){
       console.log(ca);
     }
-
-    for(var p of this.customer.customerCarts){
-      this._customerService.getProductById(Number(p.productId)).subscribe(
-        (product)=>{
-          //console.log(product);
-          this.products.push(product);
-        }
-      )
+    console.log("Final Cart");
+    for(var ca of this.customerr.customerCarts){
+      console.log(ca);
     }
-    console.log(this.products);
 
-    this._customerService.setCustomer(this.customer);
-
+    for(var c of this.customerr.customerCarts){
+       for( var p of this.products)
+      {
+        if(c.productId==p.productId)
+        {
+          this.products1.push(p);
+        }
+      }
+    }
+    //console.log(this.customer1.customerCarts);
+    this.setRender();
   }
 
-  refreshData(){
-    this.dataRefresher =
-      setInterval(() => {
-        //this.getData(false);
-        //Passing the false flag would prevent page reset to 1 and hinder user interaction
-      }, 30000);  
-  }
 
   deleteFromCart(c){
+    console.log(c);
+    this._customerService.deleteFromCart(c.cartId).subscribe( temp=>
+      {
+        alert("Product deleted");
+        window.location.reload();
+      });
 
-    this._customerService.deleteFromCart(c.cartId).subscribe((cart)=>{
-      console.log(cart);
-    })
   }
 
   sendToWishlist(c,p){
 
     this.customer1.customerCarts.slice(c);
 
-    this._customerService.sendToWishL(c.quantity,this.customer,p).subscribe((cart)=>{
+    this._customerService.sendToWishL(c.quantity,this.customer1,p).subscribe((cart)=>{
       console.log(cart);
     })
 
@@ -85,8 +94,7 @@ export class CustomerCartComponent implements OnInit {
       console.log(cart);
     })
 
-    this.getData(true);
-    this.refreshData(); 
+    this.getData();
   }
 
 

@@ -29,8 +29,6 @@ public class Cart {
 	@Column(name="product_id")
 	private int productId;
 	
-	
-	
 	public int getProductId() {
 		return productId;
 	}

@@ -29,25 +29,41 @@ export class CustomerService {
     .pipe(catchError(this.errorHandler));
   }
 
+  getCustomerByIdBC(){
+    return this._http.get(this.baseUrl+"/customer/3",this.options).pipe(map((response: Response) => response.json()))
+    .pipe(catchError(this.errorHandler)).toPromise();
+  }
+
+  //get product by customer id
+  getProductsFromCart(){
+    return this._http.get(this.baseUrl+"/cartProducts/3",this.options).pipe(map((response: Response) => response.json()))
+    .pipe(catchError(this.errorHandler)).toPromise();
+  }
+
+  getProductsFromWishlist()
+  {
+    return this._http.get(this.baseUrl+"/wishProducts/3",this.options).pipe(map((response: Response) => response.json()))
+    .pipe(catchError(this.errorHandler)).toPromise();
+  }
+
  //send product to cart post
- addToCart(quantity:Number,customerId:Customer,productId:Product){
-  console.log("JSON Object is "+[JSON.stringify(customerId),JSON.stringify(productId)]);
+  addToCart(quantity:Number,customer:Customer,product:Product){
+  //console.log("JSON Object is "+[JSON.stringify(customer),JSON.stringify(product)]);
   let customerCart = {
     "quantity":quantity,
-    "pid": productId.productId,
-    "cid": customerId.userId
+    "pid": product,
+    "cid": customer.userId
   }
   console.log(customerCart);
-  return this._http.post(this.baseUrl+"/atC",customerCart,this.options).pipe(map((response: Response) => response.json()))
+  return this._http.post(this.baseUrl+"/atC",JSON.stringify(customerCart),this.options).pipe(map((response: Response) => response.json()))
   .pipe(catchError(this.errorHandler));
 }
 
 //send product to wishlist post 
 sendToWishL(quantity:Number,customerId:Customer,productId:Product){
-  console.log("JSON Object is "+[JSON.stringify(customerId),JSON.stringify(productId)]);
   let customerCart = {
     "quantity":quantity,
-    "pid": productId.productId,
+    "pid": productId,
     "cid": customerId.userId
   }
   console.log(customerCart);
@@ -65,9 +81,8 @@ sendToWishLTC(cartId:number){
 
 //delete from Cart
 deleteFromCart(cartId:number){
-  
-  return this._http.delete(this.baseUrl+"/atDFC/"+cartId,this.options).pipe(map((response: Response) => response.json()))
-  .pipe(catchError(this.errorHandler));
+  console.log(cartId);
+  return this._http.delete(this.baseUrl+"/atDFC/"+cartId,this.options).pipe(catchError(this.errorHandler));
 }
 
   //send product to cart put
@@ -76,6 +91,12 @@ deleteFromCart(cartId:number){
     .pipe(catchError(this.errorHandler));
   }
 
+  //update customer
+  updateCustomer(customer: Customer)
+  {
+    return this._http.put(this.baseUrl+"/updateCustomerDetails",JSON.stringify(customer),this.options).pipe(map((response: Response) => response.json()))
+    .pipe(catchError(this.errorHandler));
+  }
 
   //get product by product id
   getProductById(productId:number){
