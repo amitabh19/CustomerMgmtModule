@@ -1,22 +1,17 @@
 
-<div class="container cartData">
-  <table class="table table-striped">
-      <tr>
-        <th>Product Name</th>
-        <th>Quantity</th>
-        <th>Delete Button</th>
-        <th><button class="btn btn-warning">Check Out</button></th>
-      </tr>
-      <tr *ngFor="let c of customer.customerCarts; let i = index" [attr.data-index]="i">
-          <td>
-            {{products[i].productName}}
-          </td>
-          <td>
-            {{c.quantity}}
-          </td>
-          <td>
-            <button class="btn btn-danger">Delete</button>
-          </td>
-      </tr>
-  </table>
+<div class="container ">
+  <div style="padding: 30px;">
+    <button class="btn btn-warning" style="float: right;">Check Out</button>
+  </div>
+  <div class="col-md-10 md-offset-1 row cart" *ngFor="let c of customer1.customerCarts; let i = index" [attr.data-index]="i">
+    <div class="col-md-4">
+      <img [src]="products[i].productImage" height="100px" width="50%">
+    </div>
+    <div class="col-md-6 cartD">
+      <h3>{{products[i].productName}}</h3>
+      <p><span>Quantity:</span><small>{{c.quantity}}</small></p>
+      <button class="btn btn-warning" (click)="sendToWishlist(c,products[i])" >Add To wishlist</button>
+      <button class="btn btn-danger" style="margin-left: 20px;" (click)="deleteFromCart(c)">Remove</button>
+    </div>
+  </div>
 </div>

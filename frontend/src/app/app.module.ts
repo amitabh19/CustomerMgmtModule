@@ -11,10 +11,7 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { CustomerCartComponent } from './customer-cart/customer-cart.component';
 import { CustomerWishlistComponent } from './customer-wishlist/customer-wishlist.component';
 import {ProductFeedbackComponent} from './product-feedback/product-feedback.component';
-import { DisplayByNameComponent } from './display_byName/name.component';
-import { CategoryComponent } from './category_wise/category.component';
-import { CategoryDComponent } from './display_byCategory/categoryD.component';
-import { FilterPipe } from './filter.pipe';
+import {CustomerDetailsComponent} from './customer-details/customer-details.component';
 
 const appRoutes:Routes =[
     {path:'showHome',component:HomePageComponent},
@@ -22,9 +19,7 @@ const appRoutes:Routes =[
     {path:'showCart',component:CustomerCartComponent},
     {path:'showWishlist',component:CustomerWishlistComponent},
     {path:'showProductFeedback',component:ProductFeedbackComponent},
-	{path:'disP',component:DisplayByNameComponent},
-    {path:'cat',component:CategoryComponent},
-    {path:'disC',component:CategoryDComponent}
+    {path:'showCustomerDetails',component:CustomerDetailsComponent}
 ]
 @NgModule({
     imports: [
@@ -42,7 +37,7 @@ const appRoutes:Routes =[
         CustomerCartComponent ,
         CustomerWishlistComponent ,
         ProductFeedbackComponent,
-			DisplayByNameComponent,CategoryComponent,CategoryDComponent,FilterPipe
+        CustomerDetailsComponent     
 		],
     providers: [],
     bootstrap: [AppComponent]

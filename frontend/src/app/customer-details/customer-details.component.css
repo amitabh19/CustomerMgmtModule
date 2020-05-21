@@ -1,0 +1,14 @@
+.customer{
+    padding: 20px;
+    margin-top: 20px;
+}
+.customer h3{
+    padding: 10px;
+    text-align: center;
+}
+.customer p{
+    padding: 5px;
+}
+.customer span{
+    font-weight: bolder;
+}

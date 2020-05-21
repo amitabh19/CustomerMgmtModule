@@ -38,21 +38,4 @@ export class HomePageComponent implements OnInit {
     this._router.navigate(['/showProduct']);
   }
 
-search()
-  {
-    this.result=this.products.find(x=>x.productName==this.searchText);
-    if(this.result)
-    {
-      console.log("found");
-        this.customerService.setPName=this.result.productName;
-        this.customerService.setter(this.result);
-        alert("Now taking u to product page");
-        this.router.navigate(['disP']);
-    }
-  }
-go()
-  {
-    this.router.navigate(['/cat']);
-  }
-
 }
