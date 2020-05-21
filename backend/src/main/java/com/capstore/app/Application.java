@@ -21,6 +21,7 @@ import com.capstore.app.models.User;
 import com.capstore.app.models.UserAddress;
 import com.capstore.app.repository.CustomerRepository;
 import com.capstore.app.repository.MerchantRepository;
+import com.capstore.app.repository.OrderRepository;
 import com.capstore.app.repository.ProductFeedbackRepository;
 import com.capstore.app.repository.UserRepository;
 

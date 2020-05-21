@@ -1,12 +1,15 @@
 package com.capstore.app.controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jackson.JsonObjectDeserializer;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,12 +25,15 @@ import com.capstore.app.models.MerchantDetails;
 import com.capstore.app.models.Order;
 import com.capstore.app.models.Product;
 import com.capstore.app.models.ProductFeedback;
+import com.capstore.app.repository.CartRepository;
 import com.capstore.app.repository.CommonFeedbackRepository;
 import com.capstore.app.repository.CustomerRepository;
 import com.capstore.app.repository.MerchantRepository;
 import com.capstore.app.repository.OrderRepository;
 import com.capstore.app.repository.ProductFeedbackRepository;
 import com.capstore.app.repository.ProductRepository;
+import com.capstore.app.service.ProductService;
+import com.capstore.app.service.CustomerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
@@ -55,6 +61,16 @@ public class CustomerController {
 
 	@Autowired
 	private MerchantRepository merchantRepository;
+	
+	
+	@Autowired
+	private CartRepository cartRepository;
+
+	@Autowired
+	CustomerService customerService;
+	
+	@Autowired
+	ProductService productService;
 	
 	@RequestMapping("/customers")
 	public List<CustomerDetails> getAllCustomers() {
@@ -128,7 +144,8 @@ public class CustomerController {
 	//post function to add to cart
 	@PostMapping("/atC")
 	public CustomerDetails addToCart(@RequestBody Object object) {
-
+	//	[uid =1, pid=2, quan=3]
+		
 		String str = object.toString();
 		String str1 = str.replace("{", "");
 		String str2 = str1.replace("}", "");
@@ -248,6 +265,33 @@ public class CustomerController {
 		  
 		}		
 	  
+	// function to delete wishlist
+		@DeleteMapping("/atDFW/{id}")
+		public String addToCartFromWishList(@PathVariable int id) {
+			cartRepository.deleteById(id);
+			return "deleted";
+		}
+		//function to delete from cart
+		@DeleteMapping("/atDFC/{id}")
+		public String deleteFromCart(@PathVariable int id) {
+			cartRepository.deleteById(id);
+			return "deleted";
+		}
+		
+		//Nikhil
+		@GetMapping("/customerdetails/{id}")
+		public CustomerDetails getCustomerDetailById(@PathVariable Integer id)
+		{
+			return customerService.getCustomerDetailsById(id);
+		}
+		
+		//Nikhil
+		@PutMapping("/updateCustomerDetails")
+		public CustomerDetails updateCustomerDetails(@RequestBody CustomerDetails custDetails)
+		{
+			return customerService.updateCustomerDetails(custDetails);
+		}
+	  
 	  @PostMapping("/addCommonFeedback")
 		public CustomerDetails createCommonFeedback(@RequestBody Object object) {
 		  System.out.println("The common feedback object is: "+object.toString());
@@ -301,11 +345,15 @@ public class CustomerController {
 		  return customerRepository.save(c);
 		  
 		}		
+	  
+	  
 	  @RequestMapping("/product/{name}")
 		public Product getProductByName(@PathVariable String name)
 		{
 			return productService.ListProductsByName(name);
 		}
+	  
+	  
 		
 		@RequestMapping("/categories")
 		public List<String> categories()
@@ -362,7 +410,9 @@ public class CustomerController {
 					"Mobile Accessories", true, true, true);
 			Product p1=productService.addProduct(p);
 			return p1;
-		}		
+		}	
+
+		
 	}
 
 
