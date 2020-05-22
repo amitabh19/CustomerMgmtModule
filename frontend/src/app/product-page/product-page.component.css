@@ -1,0 +1,15 @@
+.showMsg{
+    padding: 10px;
+}
+.showMsg small{
+    background-color: lightgreen;
+    font-weight: bold;
+    width: 100%;
+    padding: 10px;
+}
+.showMsg button{
+    margin-top: 20px;
+}
+.showMsg span{
+    float: right;
+}

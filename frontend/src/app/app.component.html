@@ -1,0 +1,66 @@
+﻿<!--<app-test  [parentInfo]="message" (childEvent)="result=$event"></app-test>
+<div class="container">
+<h2>{{result}}</h2>
+</div>-->
+<!--
+<app-emp-list></app-emp-list>
+<app-emp-details></app-emp-details>
+<app-state-details></app-state-details>
+
+
+<app-lab1-Main></app-lab1-Main>
+<app-lab2></app-lab2>
+
+<app-Employee></app-Employee>
+<app-Emp></app-Emp>
+<app-tdf></app-tdf>
+<app-mdf></app-mdf>
+
+
+<div class="container">
+    <h1>Routing and Navigation</h1>
+    <div class="row">
+    <div class="col-md-4"><button class="btn btn-primary" routerLink="/tdf">Tdf</button></div>
+    <div class="col-md-4"><button class="btn btn-primary" routerLink="/mdf">Mdf</button></div>
+</div>
+</div>
+<router-outlet></router-outlet>
+
+<app-lab3></app-lab3>
+<app-book></app-book>
+<app-mdfp></app-mdfp>
+-->
+<!-- Code To show nav bar -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <a class="sliderButton" (click)="showMenu(menu)">&#8801;
+    </a>
+    <div class="container">
+      <a class="navbar-brand" href=""><h2>Capstore</h2></a>
+      <div class="col-md-6 searchBar">
+              <input type="text" class="form-control" placeholder="search">
+              
+      </div>
+      <input type="submit" class="btn btn-warning" value="search">
+     
+    </div>
+  </nav>
+  
+  <!-- Code To show sliding menu -->
+  <div class="menu" #menu>
+    <h2 >Menu
+      <a class="close" (click)="closeMenu(menu)" style="margin-left: 50px; width: max-content; float:right; padding: 0;"> &#x2716;</a>
+    </h2>
+    <a routerLink="showHome">Home</a>
+    <a routerLink="showCustomerDetails"> Customer Details</a><br>
+    <a routerLink="showWishlist">Wish List</a>
+    <a routerLink="showCart">Cart</a>
+    <a >Common Feedback</a>
+    <a>Orders</a>
+  </div>
+
+<router-outlet></router-outlet>
+
+
+
+
+
