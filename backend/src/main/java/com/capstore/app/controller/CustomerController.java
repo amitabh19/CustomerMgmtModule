@@ -350,7 +350,7 @@ public class CustomerController {
 
 	}
 
-	@RequestMapping("/product/{name}")
+	@RequestMapping("/product1/{name}")
 	public Product getProductByName(@PathVariable String name) {
 		return productService.ListProductsByName(name);
 	}

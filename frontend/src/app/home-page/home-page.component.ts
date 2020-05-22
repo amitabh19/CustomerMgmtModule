@@ -11,11 +11,6 @@ import { Customer } from '../customer';
 export class HomePageComponent implements OnInit {
 
   products:Product[];
-  customer:Customer;
-  constructor(private _customerService:CustomerService ,private _router:Router) { }
-
-  ngOnInit() {
-    products:Product[];
   products1:Product[];
   searchText:string;
   result:Product;
@@ -80,8 +75,5 @@ export class HomePageComponent implements OnInit {
     this._customerService.setProduct(p);
     this._router.navigate(['/showProduct']);
   }
-
-}
-  
 
 }

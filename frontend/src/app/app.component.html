@@ -37,11 +37,12 @@
     <div class="container">
       <a class="navbar-brand" href=""><h2>Capstore</h2></a>
       <div class="col-md-6 searchBar">
-              <input type="text" class="form-control" placeholder="search"[(ngModel)]="searchText" autocomplete="off" placeholder="search">
+            <input type="text" class="form-control" placeholder="search" [(ngModel)]="searchText" autocomplete="off" placeholder="search">
             </div>
             <input type="submit" class="btn btn-warning" value="search" (click)="search()">
            
             <a (click)="go()" style="float: right;">Categories</a>
+            {{searchText}}
     </div>
   </nav>
   

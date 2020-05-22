@@ -12,6 +12,10 @@ import { CustomerCartComponent } from './customer-cart/customer-cart.component';
 import { CustomerWishlistComponent } from './customer-wishlist/customer-wishlist.component';
 import {ProductFeedbackComponent} from './product-feedback/product-feedback.component';
 import {CustomerDetailsComponent} from './customer-details/customer-details.component';
+import { DisplayByNameComponent } from './display_byName/name.component';
+import { CategoryComponent } from './category_wise/category.component';
+import { CategoryDComponent } from './display_byCategory/categoryD.component';
+import { FilterPipe } from './filter.pipe';
 
 const appRoutes:Routes =[
 	{path:'',component:HomePageComponent},

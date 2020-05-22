@@ -14,7 +14,7 @@ export class CustomerDetailsComponent implements OnInit {
   constructor(private _customerService:CustomerService) { }
 
   ngOnInit() {
-    this._customerService.getCustomerById().subscribe((customer)=>{
+    this._customerService.getCustomerByIdBC().then((customer)=>{
       this.customerDetails = customer;
 
       console.log(this.customerDetails);

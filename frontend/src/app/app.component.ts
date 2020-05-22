@@ -1,4 +1,7 @@
 ﻿import { Component } from '@angular/core';
+import { Product } from './product';
+import { CustomerService } from './customer.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app',
@@ -9,10 +12,14 @@
 export class AppComponent {
     message="Sent From Parent";
     result="";
-products:Product[];
+  
+    searchText:string;
+
+    products:Product[];
+    products1:Product[];
+
     names=new Array;
     result1:Product;
-    searchText:string;
     constructor(private customerService:CustomerService,private router:Router) { }
 
   ngOnInit() {
@@ -29,7 +36,6 @@ products:Product[];
     })
 
   }
-
     showMenu(menu){
         menu.style.display="block";  
       }
@@ -37,21 +43,30 @@ products:Product[];
         menu.style.display="none";
       }
 
-      go()
+   go()
   {
     this.router.navigate(['/cat']);
   }
 
   search()
   {
-    this.result1=this.products.find(x=>x.productName==this.searchText);
-    if(this.result1)
+    //this.result1=this.products.find(x=>x.productName==this.searchText);
+    this.products1=this.products.filter(res=>
+      {
+        return res.productName.toLocaleLowerCase().match(this.searchText.toLocaleLowerCase());
+      });
+    
+    if(this.products1)
     {
-      console.log("found");
-        this.customerService.setPName=this.result1.productName;
-        this.customerService.setter(this.result1);
+      console.log(this.products1);
+
+      //this.customerService.setPName= String(this.products1[0].productName);
+        //this.customerService.setter(this.result1);
+        this.customerService.setP = this.products1;
+        this.customerService.setPName =this.searchText;
         alert("Now taking u to product page");
         this.router.navigate(['disP']);
+        
     }
   }
 

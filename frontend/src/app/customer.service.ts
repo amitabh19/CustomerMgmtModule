@@ -15,6 +15,9 @@ export class CustomerService {
   private options = new RequestOptions({headers:this.headers});
   private product:Product;
   private customer:Customer;
+  public setPName=new String;
+  public setP : Product[];
+ 
   constructor(private _http:Http) { }
 
   //get product list
