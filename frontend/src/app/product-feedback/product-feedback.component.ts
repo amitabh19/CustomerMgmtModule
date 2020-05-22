@@ -16,8 +16,8 @@ export class ProductFeedbackComponent implements OnInit {
   submitted: boolean=false;
   ProductFeedbackForm: FormGroup;
   msg1:any;
-  message:boolean;
-  check:boolean=false;
+  message:any;
+  check:boolean=false; 
   
 
   constructor(private formBuilder: FormBuilder, private customerService:CustomerService, private router: Router) { }
@@ -46,16 +46,16 @@ export class ProductFeedbackComponent implements OnInit {
     let userId= this.ProductFeedbackForm.controls.userId.value;
     let productId=this.ProductFeedbackForm.controls.productId.value;
     console.log(this.ProductFeedbackForm.value);
-     this.customerService.create(this.ProductFeedbackForm.value,this.ProductFeedbackForm.controls.userId.value).subscribe(data => 
-        {
-          this.message=data;
-          alert("Feedback submitted");
-          //console.log(this.message);        
-        },
-        err => 
-        { console.log(err.stack);
-        });
-    }
+    this.customerService.create(this.ProductFeedbackForm.value).subscribe(data => 
+      {
+        this.message=data;
+        alert("Feedback submitted");
+        console.log(this.message);        
+      },
+      err => 
+      { console.log(err.stack);
+      });
+  }
   }
 
 

@@ -239,52 +239,30 @@ public class CustomerController {
 		return customerRepository.save(c);
 
 	}
+		
+		// function for product feedback
+		@PostMapping("/addFeedback")
+		public CustomerDetails create(@RequestBody ProductFeedback1 productFeedback) {
+			//System.out.println("The product feedback object is: " + productFeedback.toString());
+			int custId=productFeedback.userId;
+			String feedSubject=productFeedback.feedbackSubject;
+			String feedMessage=productFeedback.feedbackMessage;
+			int productId=productFeedback.productId;
 
-	// function for product feedback
-	@PostMapping("/addFeedback")
-	public CustomerDetails create(@RequestBody Object object) {
-		System.out.println("The product feedback object is: " + object.toString());
+			ProductFeedback pf = new ProductFeedback(feedSubject, feedMessage, productId);
+			Set<ProductFeedback> pfset = new HashSet<ProductFeedback>();
+			pfset.add(pf);
 
-		String str = object.toString();
-		String str1 = str.replace("{", "");
-		String str2 = str1.replace("}", "");
-		String[] array = str2.split(",");
+			System.out.println(pfset);
 
-		// to get user id
-		String[] ar = array[0].split("=");
-		int id = Integer.parseInt(ar[1]);
-		System.out.println(id);
+			CustomerDetails c = customerRepository.getOne(custId);
+			Set<ProductFeedback> res = c.getProductFeedbacks();
+			res.add(pf);
+			c.setProductFeedbacks(res);
+			System.out.println(res);
 
-		// to get subject
-		String[] ar1 = array[1].split("=");
-		String subject = ar1[1];
-		System.out.println(subject);
-
-		// to get message
-		String[] ar2 = array[2].split("=");
-		String message = ar2[1];
-		System.out.println(message);
-
-		// to get product id
-		String[] ar3 = array[3].split("=");
-		int pid = Integer.parseInt(ar3[1]);
-		System.out.println(pid);
-
-		ProductFeedback pf = new ProductFeedback(subject, message, pid);
-		Set<ProductFeedback> pfset = new HashSet<ProductFeedback>();
-		pfset.add(pf);
-
-		System.out.println(pfset);
-
-		CustomerDetails c = customerRepository.getOne(id);
-		Set<ProductFeedback> res = c.getProductFeedbacks();
-		res.add(pf);
-		c.setProductFeedbacks(res);
-		System.out.println(res);
-
-		return customerRepository.save(c);
-
-	}
+			return customerRepository.save(c);
+		}
 
 	// Nikhil
 	@GetMapping("/customerdetails/{id}")
@@ -299,48 +277,28 @@ public class CustomerController {
 	}
 
 	@PostMapping("/addCommonFeedback")
-	public CustomerDetails createCommonFeedback(@RequestBody Object object) {
-		System.out.println("The common feedback object is: " + object.toString());
-
-		String str = object.toString();
-		String str1 = str.replace("{", "");
-		String str2 = str1.replace("}", "");
-		String[] array = str2.split(",");
-
-		// to get user id
-		String[] ar = array[0].split("=");
-		int id = Integer.parseInt(ar[1]);
-		System.out.println(id);
-
-		// to get subject
-		String[] ar1 = array[1].split("=");
-		String subject = ar1[1];
-		System.out.println(subject);
-
-		// to get message
-		String[] ar2 = array[2].split("=");
-		String message = ar2[1];
-		System.out.println(message);
-
-		// to get product id
-		String[] ar3 = array[3].split("=");
-		int pid = Integer.parseInt(ar3[1]);
-		System.out.println(pid);
-
+	public CustomerDetails createCommonFeedback(@RequestBody CommonFeedback1 commonFeedback) {
+		System.out.println("The common feedback object is: " + commonFeedback.toString());
+		
+		int custId=commonFeedback.userId;
+		String feedSubject=commonFeedback.feedbackSubject;
+		String feedMessage=commonFeedback.feedbackMessage;
+		int productId=commonFeedback.productId;
+		
 		boolean requestFlag = true;
 		boolean responseFlag = false;
 		boolean requestApproved = false;
 		boolean responseApproved = false;
 		String responseMessage = null;
 
-		CommonFeedback cf = new CommonFeedback(subject, message, pid, requestFlag, responseFlag, requestApproved,
+		CommonFeedback cf = new CommonFeedback(feedSubject, feedMessage, productId, requestFlag, responseFlag, requestApproved,
 				responseApproved, responseMessage);
 		Set<CommonFeedback> cfset = new HashSet<CommonFeedback>();
 		cfset.add(cf);
 
 		System.out.println(cfset);
 
-		CustomerDetails c = customerRepository.getOne(id);
+		CustomerDetails c = customerRepository.getOne(custId);
 		Set<CommonFeedback> res = c.getFeedbacks();
 		res.add(cf);
 		c.setFeedbacks(res);
@@ -406,3 +364,17 @@ public class CustomerController {
 	}
 
 }
+class ProductFeedback1{
+	public int userId;
+	public String feedbackSubject;
+	public String feedbackMessage;
+	public int productId;
+}
+
+class CommonFeedback1{
+	public int userId;
+	public String feedbackSubject;
+	public String feedbackMessage;
+	public int productId;
+}
+

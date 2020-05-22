@@ -1,7 +1,10 @@
+<p>
+  common-feedback works!
+</p>
 
 <div class="container">
-  <form [formGroup]="ProductFeedbackForm" (ngSubmit)="productFeedback()" class='card-transparent' style="border:1px solid #ccc">
-    <h1> Product Feedback</h1>
+  <form [formGroup]="CommonFeedbackForm" (ngSubmit)="commonFeedback()" class='card-transparent' style="border:1px solid #ccc">
+    <h1> Common Feedback</h1>
     <p>Your Feedback is valuable to us.</p>
     <hr><br>
     <div class="form-group" [hidden]="!check">
@@ -18,19 +21,38 @@
     <div class="form-group">
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-4">
+          <label for="ProductList"><b>Choose Product</b></label>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8">
+          <select . . . name="ProductList" [(ngModel)]="exercisePlan.duration"> 
+            <option *ngFor="let product of products" [value]="product.value">{{product.title}}</option> 
+        </select> 
+        </div>
+        <div *ngIf="submitted && CommonFeedbackForm.controls.feedbackSubject.errors" class="error">
+          <div class="text-danger" *ngIf="CommonFeedbackForm.controls.feedbackSubject.errors.required">
+            <font color="red">Feedback Subject is required..</font>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    
+    <div class="form-group">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4">
           <label for="feedbackSubject"><b>Feedback Subject</b></label>
         </div>
         <div class="col-lg-8 col-md-8 col-sm-8">
           <input type="text" class="form-control" formControlName="feedbackSubject" placeholder="Enter a short heading for your feedback">
         </div>
-        <div *ngIf="submitted && ProductFeedbackForm.controls.feedbackSubject.errors" class="error">
-          <div class="text-danger" *ngIf="ProductFeedbackForm.controls.feedbackSubject.errors.required">
+        <div *ngIf="submitted && CommonFeedbackForm.controls.feedbackSubject.errors" class="error">
+          <div class="text-danger" *ngIf="CommonFeedbackForm.controls.feedbackSubject.errors.required">
             <font color="red">Feedback Subject is required..</font>
           </div>
-          <div class="text-danger" *ngIf="ProductFeedbackForm.controls.feedbackSubject.errors.minlength">
+          <div class="text-danger" *ngIf="CommonFeedbackForm.controls.feedbackSubject.errors.minlength">
             <font color="red">Feedback should be of minimum 15 Character long..</font>
           </div>
-          <div class="text-danger" *ngIf="ProductFeedbackForm.controls.feedbackSubject.errors.maxlength">
+          <div class="text-danger" *ngIf="CommonFeedbackForm.controls.feedbackSubject.errors.maxlength">
             <font color="red">Feedback should be of maximum 30 Character long..</font>
           </div>
         </div>
@@ -45,14 +67,14 @@
         <div class="col-lg-8 col-md-8 col-sm-8">
           <textarea class="form-control" formControlName="feedbackMessage" rows="4" cols="50"></textarea>
         </div>
-        <div *ngIf="submitted && ProductFeedbackForm.controls.feedbackMessage.errors" class="error">
-          <div class="text-danger" *ngIf="ProductFeedbackForm.controls.feedbackMessage.errors.required">
+        <div *ngIf="submitted && CommonFeedbackForm.controls.feedbackMessage.errors" class="error">
+          <div class="text-danger" *ngIf="CommonFeedbackForm.controls.feedbackMessage.errors.required">
             <font color="red">Feedback Message is required..</font>
           </div>
-          <div class="text-danger" *ngIf="ProductFeedbackForm.controls.feedbackMessage.errors.minlength">
+          <div class="text-danger" *ngIf="CommonFeedbackForm.controls.feedbackMessage.errors.minlength">
             <font color="red">Feedback Message must be atleast 25 characters long..</font>
           </div>
-          <div class="text-danger" *ngIf="ProductFeedbackForm.controls.feedbackMessage.errors.maxlength">
+          <div class="text-danger" *ngIf="CommonFeedbackForm.controls.feedbackMessage.errors.maxlength">
             <font color="red">Feedback Message must not be more than 50 characters ..</font>
           </div>
         </div>
