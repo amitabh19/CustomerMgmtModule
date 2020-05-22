@@ -133,5 +133,44 @@ deleteFromCart(cartId:number){
   errorHandler(error:Response){
     return Observable.throw(error||"SERVER ERROR");  
   }
+  
+  getProduct1():Observable<Product[]>
+  {
+      return this._http.get(this.baseUrl+'/products').pipe(map((response: Response) => response.json())).pipe(catchError(this.errorHandler));
+  }
+
+  getProductByName(name:string)
+  {
+      return this._http.get(this.baseUrl+'/product/'+name).pipe(map((response: Response) => response.json())).pipe(catchError(this.errorHandler));;
+  }
+
+  getProductByCategory(category:string)
+  {
+      return this._http.get(this.baseUrl+'/categories/'+category).pipe(map((response: Response) => response.json())).pipe(catchError(this.errorHandler));;
+  }
+
+  getProducts()
+  {
+    return this._http.get(this.baseUrl+'/products').pipe(map((response: Response) => response.json())).pipe(catchError(this.errorHandler));
+  }
+
+  productGetter()
+  {
+    return this.product;
+  }
+   setter(product:Product)
+   {
+     this.product=product;
+   }
+
+   getCategory()
+   {
+     return this._http.get(this.baseUrl+'/categories').pipe(map((response: Response) => response.json())).pipe(catchError(this.errorHandler));
+   }
+
+   getName()
+   {
+    return this._http.get(this.baseUrl+'/productsName').pipe(map((response: Response) => response.json())).pipe(catchError(this.errorHandler)); 
+   }
 
 }

@@ -14,8 +14,12 @@ import {ProductFeedbackComponent} from './product-feedback/product-feedback.comp
 import {CustomerDetailsComponent} from './customer-details/customer-details.component';
 
 const appRoutes:Routes =[
-    {path:'',component:HomePageComponent},
+	{path:'',component:HomePageComponent},
     {path:'showHome',component:HomePageComponent},
+    {path:'showProductFeedbackForm',component:ProductFeedbackComponent},
+    {path:'disP',component:DisplayByNameComponent},
+    {path:'cat',component:CategoryComponent},
+    {path:'disC',component:CategoryDComponent},
     {path:'showProduct',component:ProductPageComponent},
     {path:'showCart',component:CustomerCartComponent},
     {path:'showWishlist',component:CustomerWishlistComponent},
@@ -33,12 +37,12 @@ const appRoutes:Routes =[
     ],
     declarations: [
         AppComponent,
-        HomePageComponent,
+        HomePageComponent,DisplayByNameComponent,CategoryComponent,CategoryDComponent,FilterPipe,
         ProductPageComponent ,
         CustomerCartComponent ,
         CustomerWishlistComponent ,
         ProductFeedbackComponent,
-        CustomerDetailsComponent     
+        CustomerDetailsComponent      
 		],
     providers: [],
     bootstrap: [AppComponent]
