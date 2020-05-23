@@ -47,6 +47,14 @@ public class ProductDaoImpl implements ProductDao {
 		Product p=list2.get(0);
 		return p;
 	}
+	
+	@Override
+	public int ListProductIdByName(String name) {
+		List<Product> list1=productRepository.findAll();
+		List<Product> list2=list1.stream().filter(n->n.getProductName().equals(name)).collect(Collectors.toList());
+		int pId=list2.get(0).getProductId();
+		return pId;
+	}
 
 	@Override
 	public List<Product> ListProducts() {

@@ -1,4 +1,4 @@
-export class ProductFeedback1{
+export class CommonFeedback1{
     custId: number
     feedbackSubject:String
     feedbackMessage:String

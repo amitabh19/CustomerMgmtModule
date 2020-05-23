@@ -1,9 +1,5 @@
-<p>
-  common-feedback works!
-</p>
-
-<div class="container">
-  <form [formGroup]="CommonFeedbackForm" (ngSubmit)="commonFeedback()" class='card-transparent' style="border:1px solid #ccc">
+ <div class="container">
+  <form [formGroup]="CommonFeedbackForm" (ngSubmit)="commonFeedback()" class='card-transparent' style="border:1px solid #ccc" [hidden]="submitted1">
     <h1> Common Feedback</h1>
     <p>Your Feedback is valuable to us.</p>
     <hr><br>
@@ -13,25 +9,30 @@
           <label for="userId"><b>Feedback Details</b></label>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-5">
-          <input type="text" class="form-control" formControlName="userId"  > 
-          <input type="text" class="form-control" formControlName="productId" >
+          <input type="text" class="form-control" formControlName="userId" > 
         </div>
       </div>
     </div>
     <div class="form-group">
       <div class="row">
         <div class="col-lg-4 col-md-4 col-sm-4">
-          <label for="ProductList"><b>Choose Product</b></label>
-        </div>
+          <label for="productList"><b>Choose Product</b></label>
+        </div> 
         <div class="col-lg-8 col-md-8 col-sm-8">
-          <select . . . name="ProductList" [(ngModel)]="exercisePlan.duration"> 
-            <option *ngFor="let product of products" [value]="product.value">{{product.title}}</option> 
+          <select formControlName="productList" id="products" class="form-control" (change)="onChange()"> 
+            <option *ngFor="let product of products" value={{product}}>{{product}}</option> 
         </select> 
+
         </div>
-        <div *ngIf="submitted && CommonFeedbackForm.controls.feedbackSubject.errors" class="error">
-          <div class="text-danger" *ngIf="CommonFeedbackForm.controls.feedbackSubject.errors.required">
-            <font color="red">Feedback Subject is required..</font>
-          </div>
+      </div>
+    </div>
+    <div class="form-group" [hidden]="!check">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4">
+          <label for="productList"><b>Chosen Product Id</b></label>
+        </div> 
+        <div class="col-lg-8 col-md-8 col-sm-8">
+        <input type="text" class="form-control" formControlName="productId" value={{productId}} readonly> 
         </div>
       </div>
     </div>
@@ -53,7 +54,7 @@
             <font color="red">Feedback should be of minimum 15 Character long..</font>
           </div>
           <div class="text-danger" *ngIf="CommonFeedbackForm.controls.feedbackSubject.errors.maxlength">
-            <font color="red">Feedback should be of maximum 30 Character long..</font>
+            <font color="red">Feedback should be of maximum 40 Character long..</font>
           </div>
         </div>
       </div>
@@ -75,7 +76,7 @@
             <font color="red">Feedback Message must be atleast 25 characters long..</font>
           </div>
           <div class="text-danger" *ngIf="CommonFeedbackForm.controls.feedbackMessage.errors.maxlength">
-            <font color="red">Feedback Message must not be more than 50 characters ..</font>
+            <font color="red">Feedback Message must not be more than 100 characters ..</font>
           </div>
         </div>
       </div>
@@ -89,4 +90,11 @@
 
     </div><br>
   </form>
-</div>
+  <div [hidden]="!submitted1" style="text-align: center;">
+    <br><br>
+    <h4><b>Thank You For Your Feedback</b></h4><br>
+    <img src="/assets/tick.gif" alt="tick" height="180px" width="180px"><br><br>
+    <h4>Your Feedback is valuable to Us </h4>
+    <h4>We will get back to you soon</h4><br><br>
+  </div>
+</div> 

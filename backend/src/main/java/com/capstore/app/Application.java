@@ -119,12 +119,26 @@ public class Application implements CommandLineRunner {
 				order1Product.put(1, 10);
 				order1Product.put(2, 11);
 				order1Product.put(3, 20);
+				
+				Map<Integer,Integer> order2Product = new HashMap<Integer,Integer>();
+				order2Product.put(1, 21);
+				order2Product.put(2, 22);
+				order2Product.put(3, 10);
+				
+				
 				//add order in customer
 				Order orders=new Order(300,"Shipped",null,1,null);
 				orders.setProducts(order1Product);
+				Order orders1=new Order(500,"Shipped",null,1,null);
+				orders1.setProducts(order2Product);
+				
 				orderRepository.save(orders);
+				orderRepository.save(orders1);
+				
 				Set<Order> orderSet1 = new HashSet<Order>();
 				orderSet1.add(orders);
+				orderSet1.add(orders1);
+				
 				customer1.setOrders(orderSet1);
 				customerRepository.save(customer1);
 				

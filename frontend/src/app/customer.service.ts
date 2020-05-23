@@ -6,6 +6,8 @@ import { Observable, throwError, from } from 'rxjs';
 import { Product } from './product';
 import {Customer} from './customer';
 import { ProductFeedback1 } from './productFeedback1';
+import { CommonFeedback1 } from './commonFeedback1';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -111,10 +113,23 @@ deleteFromCart(cartId:number){
 
  
  //send product feedback
- create(productFeedback: ProductFeedback1) {
-  //console.log(ProductFeedback.toString()); 
+ create(productFeedback: ProductFeedback1) { 
   return this._http.post(this.baseUrl+"/addFeedback/",productFeedback).pipe(catchError(this.errorHandler));
+}
 
+//send common feedback
+ createCommonFeedback(commonFeedback: CommonFeedback1) { 
+  return this._http.post(this.baseUrl+"/addCommonFeedback/",commonFeedback).pipe(catchError(this.errorHandler));
+}
+
+//to get product name of order by customer
+getOrderedProductName(id: number){
+  return this._http.get(this.baseUrl+"/orderedProductName/"+id,this.options).pipe(map((response: Response) => response.json())).pipe(catchError(this.errorHandler));
+}
+
+//get product id by product name
+getProductIdByName(name: string){
+  return this._http.get(this.baseUrl+"/productIdByName/"+name,this.options).pipe(map((response: Response) => response.json())).pipe(catchError(this.errorHandler));
 }
 
   //getter and setter functions for product (will be used to send product from home page to products page)

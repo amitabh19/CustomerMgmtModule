@@ -47,4 +47,11 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.ListProductsByName(name);
 	}
 
+	@Override
+	public int ListProductIdByName(String name) {
+		return productDao.ListProductIdByName(name);
+	}
+	
+	
+
 }

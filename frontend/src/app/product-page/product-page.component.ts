@@ -22,6 +22,10 @@ export class ProductPageComponent implements OnInit {
     this.location= this.product.productImage;
     console.log("location is:"+this.location);
     console.log("Product receieved is:"+this.product);
+    if(localStorage.productId ){
+      localStorage.removeItem("productId");
+    }
+    localStorage.productId=this.product.productId;
     this._customerService.getCustomerById().subscribe((customer)=>{
       this.customer=customer;
       console.log(this.customer);
@@ -79,6 +83,11 @@ export class ProductPageComponent implements OnInit {
   {
     this._customerService.setCustomer(this.customer);
     this.router.navigate(['showCart']);
+  }
+
+  goToFeedback()
+  {
+    this.router.navigate(['showProductFeedback']);
   }
 
   goToWish()

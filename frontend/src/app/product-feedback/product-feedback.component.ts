@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from '../customer.service';
-import { ProductFeedback } from '../ProductFeedback';
 import { Router } from '@angular/router';
-import { collectExternalReferences } from '@angular/compiler';
 
 @Component({
   selector: 'app-product-feedback',
@@ -12,10 +10,9 @@ import { collectExternalReferences } from '@angular/compiler';
 })
 export class ProductFeedbackComponent implements OnInit {
 
-  ProductFeedback: ProductFeedback=new ProductFeedback();
   submitted: boolean=false;
+  submitted1: boolean=false;
   ProductFeedbackForm: FormGroup;
-  msg1:any;
   message:any;
   check:boolean=false; 
   
@@ -25,10 +22,11 @@ export class ProductFeedbackComponent implements OnInit {
   ngOnInit() {
     this.ProductFeedbackForm=this.formBuilder.group({
       userId:[{value:'3', disabled:false}],
-      feedbackSubject:['',[Validators.required,Validators.maxLength(30),Validators.minLength(15)]],
-      feedbackMessage:['',[Validators.required,Validators.maxLength(50),Validators.minLength(25)]],
-      productId:[{value:'22', disabled: false}]
+      feedbackSubject:['',[Validators.required,Validators.maxLength(40),Validators.minLength(15)]],
+      feedbackMessage:['',[Validators.required,Validators.maxLength(100),Validators.minLength(25)]],
+      productId:[localStorage.productId]
     });
+      
   }
 
   productFeedback(){
@@ -41,15 +39,11 @@ export class ProductFeedbackComponent implements OnInit {
       return;
     }
     else{
-    let feedbackSubject=this.ProductFeedbackForm.controls.feedbackSubject.value;
-    let feedbackMessage=this.ProductFeedbackForm.controls.feedbackMessage.value;
-    let userId= this.ProductFeedbackForm.controls.userId.value;
-    let productId=this.ProductFeedbackForm.controls.productId.value;
     console.log(this.ProductFeedbackForm.value);
     this.customerService.create(this.ProductFeedbackForm.value).subscribe(data => 
       {
         this.message=data;
-        alert("Feedback submitted");
+        this.submitted1=true;
         console.log(this.message);        
       },
       err => 

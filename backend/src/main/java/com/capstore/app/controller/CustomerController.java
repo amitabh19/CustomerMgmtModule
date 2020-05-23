@@ -3,6 +3,7 @@ package com.capstore.app.controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -312,6 +313,34 @@ public class CustomerController {
 	public Product getProductByName(@PathVariable String name) {
 		return productService.ListProductsByName(name);
 	}
+	
+	@GetMapping("/productIdByName/{name}")
+	public int getProductIdByName(@PathVariable String name) {
+		return productService.ListProductIdByName(name);
+	}
+	
+	@GetMapping("/orderedProductName/{id}")
+	public List<String> getOrderedProductName(@PathVariable int id) {
+		CustomerDetails cust=customerRepository.getOne(id);
+		Set<Order> orders=cust.getOrders();
+		Set<Integer> prodList= new HashSet<Integer>();
+		List<String> orderedProductName=new ArrayList<String>();
+		for (Order order : orders) {
+			Map<Integer,Integer> products=order.getProducts();
+			prodList.addAll(products.values());
+		}
+		for(Integer prod: prodList) {
+			orderedProductName.add(getNameByProductId(prod));
+		}
+		return orderedProductName;
+	}
+	
+	@GetMapping("/productNameById/{id}")
+	public String getNameByProductId(@PathVariable int id) {
+		return productRepository.getOne(id).getProductName();
+	}
+	
+	
 
 	@RequestMapping("/categories")
 	public List<String> categories() {

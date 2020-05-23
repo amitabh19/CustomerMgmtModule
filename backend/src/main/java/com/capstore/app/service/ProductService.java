@@ -21,5 +21,6 @@ public interface ProductService {
 	
 	public List<Product> ListProducts();
 	public Product ListProductsByName(String name);
+	int ListProductIdByName(String name);
 
 }
