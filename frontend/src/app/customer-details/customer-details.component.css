@@ -12,3 +12,12 @@
 .customer span{
     font-weight: bolder;
 }
+
+.subBar a{
+    color: darkblue;
+    font-weight: bolder;
+    padding: 20px;
+    padding-top: 30px;
+    padding-left: 30px;
+    text-decoration: none;
+}

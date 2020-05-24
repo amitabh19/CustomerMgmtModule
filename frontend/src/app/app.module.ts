@@ -17,6 +17,7 @@ import { CategoryComponent } from './category_wise/category.component';
 import { CategoryDComponent } from './display_byCategory/categoryD.component';
 import { FilterPipe } from './filter.pipe';
 import { CommonFeedbackComponent } from './common-feedback/common-feedback.component';
+import {UpdateCustomerDetailsComponent} from './update-customer-details/update-customer-details.component';
 
 const appRoutes:Routes =[
 	{path:'',component:HomePageComponent},
@@ -30,7 +31,8 @@ const appRoutes:Routes =[
     {path:'showWishlist',component:CustomerWishlistComponent},
     {path:'showProductFeedback',component:ProductFeedbackComponent},
     {path:'showCommonFeedback', component:CommonFeedbackComponent},
-    {path:'showCustomerDetails',component:CustomerDetailsComponent}
+    {path:'showCustomerDetails',component:CustomerDetailsComponent},
+    {path:'updateCustomerDetails',component:UpdateCustomerDetailsComponent}
 ]
 @NgModule({
     imports: [
@@ -49,7 +51,8 @@ const appRoutes:Routes =[
         CustomerWishlistComponent ,
         ProductFeedbackComponent,
         CommonFeedbackComponent,
-        CustomerDetailsComponent      
+        CustomerDetailsComponent ,
+        UpdateCustomerDetailsComponent    
 		],
     providers: [],
     bootstrap: [AppComponent]

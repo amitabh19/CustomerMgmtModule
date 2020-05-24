@@ -1,0 +1,56 @@
+<div class="col-md-6 offset-md-3 subBar border border-success rounded shadow p-4 mb-4 bg-white">
+  <form #updateForm="ngForm" (ngSubmit)="updateDetails()">
+    <div class="form-group row">
+      <div class="col-md-3"><label class="form-label">Name:</label></div>
+      <div class="col-md-6">
+      <input type="text" name="name" [(ngModel)]="customerDetails.name" class="form-control" required pattern="^[A-Z][a-z]+([\ A-Za-z]+)*" [class.is-invalid]="name.invalid && name.touched" #name="ngModel">
+      <div *ngIf="name.errors && (name.invalid && name.touched)">
+        <small class="text-danger" *ngIf="name.errors.required">Name is mandatory.</small><br/>
+        <small class="text-danger" *ngIf="name.errors.pattern">Only Alphabets allowed.<br/>First letter of the name should be Uppercase.</small>
+      </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-md-3"><label class="form-label">Phone Number:</label></div>
+      <div class="col-md-6"><input type="text" name="phoneNo" [(ngModel)]="customerDetails.phoneNumber" class="form-control" required pattern="^[1-9]{1}[0-9]{9}$" [class.is-invalid]="phone.invalid && phone.touched" #phone="ngModel"></div>
+      <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
+        <small class="text-danger" *ngIf="phone.errors.required">Phone No. is mandatory.</small><br/>
+        <small class="text-danger" *ngIf="phone.errors.pattern">Phone No. should be of exactly ten digits and first no. should not be 0.</small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3"><label class="form-label">Alternate Phone Number:</label></div>
+      <div class="col-md-6"><input type="text" name="alternatePhoneNo" [(ngModel)]="customerDetails.alternatePhoneNumber" class="form-control" pattern="^[1-9]{1}[0-9]{9}$" [class.is-invalid]="phone1.invalid && phone1.touched" #phone1="ngModel"></div>
+      <div *ngIf="phone1.errors && (phone1.invalid && phone1.touched)">
+        <small class="text-danger" *ngIf="phone1.errors.pattern">Alternate Phone No. should be of exactly ten digits and first no. should not be 0.</small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3"><label class="form-label">Email:</label></div>
+      <div class="col-md-6"><input type="text" name="email" [(ngModel)]="customerDetails.eMail" class="form-control" required pattern="^\S+@\S+\.\S+$" [class.is-invalid]="email.invalid && email.touched" #email="ngModel"></div>
+      <div *ngIf="email.errors && (email.invalid && email.touched)">
+        <small class="text-danger" *ngIf="email.errors.required">Email is mandatory.</small><br/>
+        <small class="text-danger" *ngIf="email.errors.pattern">Email should be in anystring@anystring.anystring format.</small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3"><label class="form-label">Alternate Email:</label></div>
+      <div class="col-md-6"><input type="text" name="alternateEmail" [(ngModel)]="customerDetails.alternateEmail" class="form-control" pattern="^\S+@\S+\.\S+$" [class.is-invalid]="email1.invalid && email1.touched" #email1="ngModel"></div>
+      <div *ngIf="email1.errors && (email1.invalid && email1.touched)">
+        <small class="text-danger" *ngIf="email1.errors.pattern">Alternate Email should be in anystring@anystring.anystring format.</small>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-3"><label class="form-label">Address:</label></div>
+      <div class="col-md-6"><input type="text" name="address" [(ngModel)]="customerDetails.address" class="form-control" required  [class.is-invalid]="address.invalid && address.touched" #address="ngModel"></div>
+    </div>
+
+
+    <input type="submit" value="Save Changes" class="btn btn-primary">
+
+  </form>
+</div>

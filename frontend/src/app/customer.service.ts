@@ -40,6 +40,13 @@ export class CustomerService {
     .pipe(catchError(this.errorHandler)).toPromise();
   }
 
+ 
+
+  updateCustomerDetails(customerDetails:Customer)
+  {
+    return this._http.put(this.baseUrl+"/updateCustomerDetails",JSON.stringify(customerDetails),this.options).pipe(map((response: Response) => response.json()))
+    .pipe(catchError(this.errorHandler));
+  }
   //get product by customer id
   getProductsFromCart(){
     return this._http.get(this.baseUrl+"/cartProducts/3",this.options).pipe(map((response: Response) => response.json()))

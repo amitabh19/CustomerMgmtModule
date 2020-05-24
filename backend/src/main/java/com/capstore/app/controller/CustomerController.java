@@ -21,12 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capstore.app.models.Cart;
 import com.capstore.app.models.CommonFeedback;
+import com.capstore.app.models.CommonFeedback1;
 import com.capstore.app.models.CustomerDetails;
 import com.capstore.app.models.LocalCart;
 import com.capstore.app.models.MerchantDetails;
 import com.capstore.app.models.Order;
 import com.capstore.app.models.Product;
 import com.capstore.app.models.ProductFeedback;
+import com.capstore.app.models.ProductFeedback1;
 import com.capstore.app.repository.CartRepository;
 import com.capstore.app.repository.CommonFeedbackRepository;
 import com.capstore.app.repository.CustomerRepository;
@@ -34,7 +36,7 @@ import com.capstore.app.repository.MerchantRepository;
 import com.capstore.app.repository.OrderRepository;
 import com.capstore.app.repository.ProductFeedbackRepository;
 import com.capstore.app.repository.ProductRepository;
-import com.capstore.app.service.ProductService;
+
 import com.capstore.app.service.CustomerService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -68,66 +70,66 @@ public class CustomerController {
 	CustomerService customerService;
 
 	@Autowired
-	ProductService productService;
+	CustomerService productService;
 
 	@RequestMapping("/customers")
 	public List<CustomerDetails> getAllCustomers() {
-		return customerRepository.findAll();
+		return customerService.getAllCustomers();
 	}
 
 	@RequestMapping("/customer/{id}")
 	public CustomerDetails getCustomerById(@PathVariable int id) {
-		return customerRepository.getOne(id);
+		return customerService.getCustomerById(id);
 	}
 
 	@RequestMapping("/merchants")
 	public List<MerchantDetails> getAllMerchants() {
-		return merchantRepository.findAll();
+		return customerService.getAllMerchants();
 	}
 
 	@GetMapping("/merchant/{id}")
 	public MerchantDetails getMerchantById(@PathVariable int id) {
-		return merchantRepository.getOne(id);
+		return customerService.getMerchantById(id);
 	}
 
 	@RequestMapping("products")
 	public List<Product> getAllProducts() {
-		return productRepository.findAll();
+		return customerService.getAllProducts();
 	}
 
 	@GetMapping("/product/{id}")
 	public Product getProductById(@PathVariable int id) {
-		return productRepository.getOne(id);
+		return customerService.getProductById(id);
 	}
 
 	@RequestMapping("productFeedback")
 	public List<ProductFeedback> getAllProductFeedbacks() {
-		return productFeedbackRepository.findAll();
+		return customerService.getAllProductFeedbacks();
 	}
 
 	@GetMapping("/productFeedback/{id}")
 	public ProductFeedback getProductFeedbackById(@PathVariable int id) {
-		return productFeedbackRepository.getOne(id);
+		return customerService.getProductFeedbackById(id);
 	}
 
 	@GetMapping("/commonFeedback/{id}")
 	public CommonFeedback getCommonFeedbackById(@PathVariable int id) {
-		return commonFeedbackRepository.getOne(id);
+		return customerService.getCommonFeedbackById(id);
 	}
 
 	@RequestMapping("commonFeedback")
 	public List<CommonFeedback> getAllCommonFeedbacks() {
-		return commonFeedbackRepository.findAll();
+		return customerService.getAllCommonFeedbacks();
 	}
 
 	@RequestMapping("/orders")
 	public List<Order> getAllOrders() {
-		return orderRepository.findAll();
+		return customerService.getAllOrders();
 	}
 
 	@GetMapping("/orders/{id}")
 	public Order getOrderById(@PathVariable int id) {
-		return orderRepository.getOne(id);
+		return customerService.getOrderById(id);
 	}
 
 	// function to get numbers from json
@@ -143,53 +145,21 @@ public class CustomerController {
 	public CustomerDetails addToCartBC(@RequestBody LocalCart lc) {
 		// LocalCart : [uid =1, pid=2, quan=3]
 
-		int quan = lc.getQuantity();
-		int cid = lc.getCid();
-		CustomerDetails c = customerRepository.getOne(cid);
-		Product p = lc.getPid();
-		Set<Cart> cart = c.getCustomerCarts();
-
-		for (Cart t : cart) {
-			System.out.println("The type of cart is:" + t.getType());
-			if (t.getProductId() == p.getProductId() && t.getType().equals("cart")) {
-				t.setQuantity(t.getQuantity() + quan);
-				customerRepository.save(c);
-				return customerRepository.save(c);
-			}
-		}
-
-		Cart ct = new Cart("cart", quan, p.getProductId());
-		cart.add(ct);
-		c.setCustomerCarts(cart);
-		return customerRepository.save(c);
+		return customerService.addToCartBC(lc);
 
 	}
 
 	@GetMapping("/cartProducts/{id}")
 	public List<Product> cartProducts(@PathVariable int id) {
-		CustomerDetails c = customerRepository.getOne(id);
-		List<Product> lp = new ArrayList<>();
-		Set<Cart> cc = c.getCustomerCarts();
-		for (Cart cp : cc) {
-			if (cp.getType().equals("cart")) {
-				lp.add(productRepository.getOne(cp.getProductId()));
-			}
-		}
-		return lp;
+		
+		return customerService.cartProducts(id);
 
 	}
 	
 	@GetMapping("/wishProducts/{id}")
 	public List<Product> wishProducts(@PathVariable int id) {
-		CustomerDetails c = customerRepository.getOne(id);
-		List<Product> lp = new ArrayList<>();
-		Set<Cart> cc = c.getCustomerCarts();
-		for (Cart cp : cc) {
-			if (cp.getType().equals("wishlist")) {
-				lp.add(productRepository.getOne(cp.getProductId()));
-			}
-		}
-		return lp;
+		
+		return customerService.wishProducts(id);
 
 	}
 
@@ -197,47 +167,28 @@ public class CustomerController {
 	@PostMapping("/atW")
 	public CustomerDetails addToWishlist(@RequestBody LocalCart lc) {
 
-		int quan = lc.getQuantity();
-		int pid = lc.getPid().getProductId();
-		int cid = lc.getCid();
-		CustomerDetails c = customerRepository.getOne(cid);
-		Product p = productRepository.getOne(pid);
-		Set<Cart> cart = c.getCustomerCarts();
-
-		for (Cart t : cart) {
-			if (t.getProductId() == p.getProductId() && t.getType().equals("wishlist")) {
-				t.setQuantity(t.getQuantity() + quan);
-				customerRepository.save(c);
-				return customerRepository.save(c);
-			}
-		}
-
-		Cart ct = new Cart("wishlist", quan, p.getProductId());
-		cart.add(ct);
-		c.setCustomerCarts(cart);
-		customerRepository.save(c);
-		return customerRepository.save(c);
+		return customerService.addToWishlist(lc);
 
 	}
 
 	// function to delete wishlist
 	@DeleteMapping("/atDFW/{id}")
 	public String addToCartFromWishList(@PathVariable int id) {
-		cartRepository.deleteById(id);
-		return "deleted";
+		
+		return customerService.addToCartFromWishList(id);
 	}
 
 	// function to delete from cart
 	@DeleteMapping("/atDFC/{id}")
 	public String deleteFromCart(@PathVariable int id) {
-		cartRepository.deleteById(id);
-		return "deleted";
+		
+		return customerService.deleteFromCart(id);
 	}
 
 	// put function to add to cart
 	@PutMapping("/atC")
 	public CustomerDetails addToCartPut(@RequestBody CustomerDetails c) {
-		return customerRepository.save(c);
+		return customerService.addToCartPut(c);
 
 	}
 		
@@ -245,38 +196,28 @@ public class CustomerController {
 		@PostMapping("/addFeedback")
 		public CustomerDetails create(@RequestBody ProductFeedback1 productFeedback) {
 			//System.out.println("The product feedback object is: " + productFeedback.toString());
-			int custId=productFeedback.userId;
-			String feedSubject=productFeedback.feedbackSubject;
-			String feedMessage=productFeedback.feedbackMessage;
-			int productId=productFeedback.productId;
-
-			ProductFeedback pf = new ProductFeedback(feedSubject, feedMessage, productId);
-			Set<ProductFeedback> pfset = new HashSet<ProductFeedback>();
-			pfset.add(pf);
-
-			System.out.println(pfset);
-
-			CustomerDetails c = customerRepository.getOne(custId);
-			Set<ProductFeedback> res = c.getProductFeedbacks();
-			res.add(pf);
-			c.setProductFeedbacks(res);
-			System.out.println(res);
-
-			return customerRepository.save(c);
+			
+			return  customerService.create(productFeedback);
 		}
 
-	// Nikhil
-	@GetMapping("/customerdetails/{id}")
-	public CustomerDetails getCustomerDetailById(@PathVariable Integer id) {
-		return customerService.getCustomerDetailsById(id);
-	}
-
-	// Nikhil
-	@PutMapping("/updateCustomerDetails")
-	public CustomerDetails updateCustomerDetails(@RequestBody CustomerDetails custDetails) {
-		return customerService.updateCustomerDetails(custDetails);
-	}
-
+		
+		//Nikhil
+		@GetMapping("/customerdetails/{id}")
+		public CustomerDetails getCustomerDetailById(@PathVariable Integer id)
+		{
+			return customerService.getCustomerDetailsById(id);
+		}
+		
+		//Nikhil
+		@PutMapping("/updateCustomerDetails")
+		public CustomerDetails updateCustomerDetails(@RequestBody CustomerDetails custDetails)
+		{
+			return customerService.updateCustomerDetails(custDetails);
+		}
+		
+	
+		
+	//function for common feedback
 	@PostMapping("/addCommonFeedback")
 	public CustomerDetails createCommonFeedback(@RequestBody CommonFeedback1 commonFeedback) {
 		System.out.println("The common feedback object is: " + commonFeedback.toString());
@@ -305,7 +246,7 @@ public class CustomerController {
 		c.setFeedbacks(res);
 		System.out.println(res);
 
-		return customerRepository.save(c);
+		return customerService.createCommonFeedback(commonFeedback);
 
 	}
 
@@ -321,23 +262,13 @@ public class CustomerController {
 	
 	@GetMapping("/orderedProductName/{id}")
 	public List<String> getOrderedProductName(@PathVariable int id) {
-		CustomerDetails cust=customerRepository.getOne(id);
-		Set<Order> orders=cust.getOrders();
-		Set<Integer> prodList= new HashSet<Integer>();
-		List<String> orderedProductName=new ArrayList<String>();
-		for (Order order : orders) {
-			Map<Integer,Integer> products=order.getProducts();
-			prodList.addAll(products.values());
-		}
-		for(Integer prod: prodList) {
-			orderedProductName.add(getNameByProductId(prod));
-		}
-		return orderedProductName;
+		
+		return customerService.getOrderedProductName(id);
 	}
 	
 	@GetMapping("/productNameById/{id}")
 	public String getNameByProductId(@PathVariable int id) {
-		return productRepository.getOne(id).getProductName();
+		return customerService.getNameByProductId(id);
 	}
 	
 	
@@ -393,17 +324,3 @@ public class CustomerController {
 	}
 
 }
-class ProductFeedback1{
-	public int userId;
-	public String feedbackSubject;
-	public String feedbackMessage;
-	public int productId;
-}
-
-class CommonFeedback1{
-	public int userId;
-	public String feedbackSubject;
-	public String feedbackMessage;
-	public int productId;
-}
-
