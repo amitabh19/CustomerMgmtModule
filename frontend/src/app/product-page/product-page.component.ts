@@ -16,6 +16,7 @@ export class ProductPageComponent implements OnInit {
   location:String;
   success:Boolean=true;
   msg:String;
+  error:String;
   ngOnInit() {
     
     this.product=this._customerService.getProduct()
@@ -33,7 +34,16 @@ export class ProductPageComponent implements OnInit {
   }
 
   sendToCart(quantity){
+    if(quantity>5)
+    {
+      this.error = "cannot add more than 5 items";
+    }
+    else if(quantity<1)
+    {
+      this.error = "cannot enter null or negative values";
+    }
     
+    else{
     let productJson = {
       "productId":this.product.productId,
       "productName":this.product.productName,
@@ -75,8 +85,10 @@ export class ProductPageComponent implements OnInit {
     this._customerService.setCustomer(this.customer);
     this.success = false;
     this.msg="Item added to cart"
+    this.error=null;
+
     //this.router.navigate(['showCart']);
-    
+  }
   }
 
   goToCart()
@@ -97,6 +109,16 @@ export class ProductPageComponent implements OnInit {
   }
 
   sendToWishL(quantity){
+    if(quantity>5)
+    {
+      this.error = "cannot add more than 5 items";
+    }
+    else if(quantity<1)
+    {
+      this.error = "cannot enter null or negative values";
+    }
+    
+    else{
     
     let productJson = {
       "productId":this.product.productId,
@@ -137,6 +159,8 @@ export class ProductPageComponent implements OnInit {
     });
     this.success = false;
     this.msg="Item added to wishlist";
+    this.error=null;
+  }
   }
 
   closeSpan(span){

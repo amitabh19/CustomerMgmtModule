@@ -65,17 +65,17 @@ public class Application implements CommandLineRunner {
 				customerRepository.save(customer2);
 				
 				//add product to merchants
-				Product product1 = new Product("Product1", "./assets/product1.jpg", 500, 4, 2, "Brand1", 100, "Product Info", 2, "Category1", true, true, true);
-				Product product2 = new Product("Product2", "./assets/product2.jpg", 550, 3, 2, "Brand2", 120, "Product Info2", 2, "Category2", true, true, true);
-				Product product3 = new Product("Product3", "./assets/product3.jpg", 505, 4, 2, "Brand3", 130, "Product Info3", 2, "Category3", true, true, true);
-				Product product4 = new Product("Product4", "./assets/product4.jpg", 4545, 4, 2, "Brand3", 230, "Product Info4", 2, "Category3", true, true, true);
-				Product product5 = new Product("Product5", "./assets/product5.jpg", 5025, 4, 2, "Brand2", 420, "Product Info5", 2, "Category2", true, true, true);
-				Product product6 = new Product("Product6", "./assets/product6.jpg", 605, 4, 2, "Brand2", 330, "Product Info6", 2, "Category2", true, true, true);
-				Product product7 = new Product("Product7", "./assets/product7.jpg", 400, 4, 2, "Brand1", 220, "Product Info7", 2, "Category2", true, true, true);
-				Product product8 = new Product("Product8", "./assets/product8.jpg", 800, 4, 2, "Brand1", 130, "Product Info8", 2, "Category1", true, true, true);
-				Product product9 = new Product("Product9", "./assets/product9.jpg", 105, 2, 2, "Brand2", 430, "Product Info9", 2, "Category1", true, true, true);
-				Product product10 = new Product("Product10", "./assets/wallet.jpg", 2305, 1, 2, "Brand3", 900, "Product Info10", 2, "Category1", true, true, true);
-				Product product11 = new Product("Product11", "./assets/product11.jpg", 1505, 4, 2, "Brand3", 100, "Product Info11", 2, "Category3", true, true, true);
+				Product product1 = new Product("Product1", "./assets/product1.jpg", 500, 4, 2, "Brand1", 100, "Product Info", 2, "Electronics", true, true, true);
+				Product product2 = new Product("Product2", "./assets/product2.jpg", 550, 3, 2, "Brand2", 120, "Product Info2", 2, "Clothing", true, true, true);
+				Product product3 = new Product("Product3", "./assets/product3.jpg", 505, 4, 2, "Brand3", 130, "Product Info3", 2, "Footwear", true, true, true);
+				Product product4 = new Product("Product4", "./assets/product4.jpg", 4545, 4, 2, "Brand3", 230, "Product Info4", 2, "Footwear", true, true, true);
+				Product product5 = new Product("Product5", "./assets/product5.jpg", 5025, 4, 2, "Brand2", 420, "Product Info5", 2, "Clothing", true, true, true);
+				Product product6 = new Product("Product6", "./assets/product6.jpg", 605, 4, 2, "Brand2", 330, "Product Info6", 2, "Clothing", true, true, true);
+				Product product7 = new Product("Product7", "./assets/product7.jpg", 400, 4, 2, "Brand1", 220, "Product Info7", 2, "Clothing", true, true, true);
+				Product product8 = new Product("Product8", "./assets/product8.jpg", 800, 4, 2, "Brand1", 130, "Product Info8", 2, "Electronics", true, true, true);
+				Product product9 = new Product("Product9", "./assets/product9.jpg", 105, 2, 2, "Brand2", 430, "Product Info9", 2, "Electronics", true, true, true);
+				Product product10 = new Product("Product10", "./assets/wallet.jpg", 2305, 1, 2, "Brand3", 900, "Product Info10", 2, "Electronics", true, true, true);
+				Product product11 = new Product("Product11", "./assets/product11.jpg", 1505, 4, 2, "Brand3", 100, "Product Info11", 2, "Footwear", true, true, true);
 				
 				
 				Set<Product> merchant1Product = new HashSet<Product>();

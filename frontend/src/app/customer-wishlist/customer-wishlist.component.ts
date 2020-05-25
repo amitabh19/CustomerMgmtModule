@@ -9,7 +9,7 @@ import { Product } from '../product';
 })
 export class CustomerWishlistComponent implements OnInit {
 
-  constructor(private _customerService:CustomerService) { }
+  
   customerr:Customer;
   customer1:Customer
   products:Product[]=[];
@@ -17,13 +17,15 @@ export class CustomerWishlistComponent implements OnInit {
   products1:Product[]=[];
   render : Boolean = false;
 
+  constructor(private _customerService:CustomerService) { }
+
   ngOnInit() {
     this._customerService.getCustomerByIdBC().then((customer)=>{
       this.customer1 = customer;
       this.customerr = customer;
       console.log(customer);
-    })
-    console.log("yo");
+    }).then( (t)=>
+    {
     this._customerService.getProductsFromWishlist().then((product)=>{
       this.products = product;
       console.log(this.products);
@@ -31,7 +33,8 @@ export class CustomerWishlistComponent implements OnInit {
     {
       this.getData();
     }
-    )
+    )}
+      )
   }
   setRender()
   {
