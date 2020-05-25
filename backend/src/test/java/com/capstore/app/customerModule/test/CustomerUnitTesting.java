@@ -3,6 +3,7 @@ package com.capstore.app.customerModule.test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -17,9 +18,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.capstore.app.controller.CustomerController;
 import com.capstore.app.models.Cart;
+import com.capstore.app.models.CommonFeedback;
+import com.capstore.app.models.CommonFeedback1;
 import com.capstore.app.models.CustomerDetails;
 import com.capstore.app.models.LocalCart;
 import com.capstore.app.models.Product;
+import com.capstore.app.models.ProductFeedback;
+import com.capstore.app.models.ProductFeedback1;
 import com.capstore.app.repository.CustomerRepository;
 
 
@@ -189,5 +194,69 @@ class CustomerUnitTesting {
 		customerRepository.save(customerDetail);
 		assertThat(customerDetail.getName()).isEqualTo("Roxxane");
 	}
+	
+	// Test function to add new Product Feedback
+		@Test
+		@Rollback(true)
+		public void addProductFeedback() {
+
+			ProductFeedback1 pfTest=new ProductFeedback1();
+			pfTest.userId=3;
+			pfTest.feedbackSubject="This is a test product feedback subject";
+			pfTest.feedbackMessage="This is a test product feedback message";
+			pfTest.productId=20;
+
+			CustomerDetails cd = customerController.create(pfTest);
+			Set<ProductFeedback> productFeedbackSet = cd.getProductFeedbacks();
+			boolean checked = false;
+			for (ProductFeedback pf : productFeedbackSet) {
+				if( pf.getProductId() == pfTest.productId && pf.getFeedbackSubject() == pfTest.feedbackSubject && pf.getFeedbackMessage()==pfTest.feedbackMessage) {
+					checked = true;
+				}
+			}
+			Assert.assertEquals(true, checked);
+		}
+		
+		// Test function to add new Common Feedback
+			@Test
+			@Rollback(true)
+			public void addCommonFeedback() {
+
+				CommonFeedback1 cfTest=new CommonFeedback1();
+				cfTest.userId=3;
+				cfTest.feedbackSubject="This is a test common feedback subject";
+				cfTest.feedbackMessage="This is a test common feedback message";
+				cfTest.productId=20;
+
+				CustomerDetails cd = customerController.createCommonFeedback(cfTest);
+				Set<CommonFeedback> commonFeedbackSet = cd.getFeedbacks();
+				boolean checked = false;
+				for (CommonFeedback cf : commonFeedbackSet) {
+					if( cf.getProductId() == cfTest.productId && cf.getFeedbackSubject() == cfTest.feedbackSubject && cf.getFeedbackMessage()==cfTest.feedbackMessage) {
+						checked = true;
+					}
+				}
+				Assert.assertEquals(true, checked);
+			}
+			
+			// Test function to get name of products ordered by the customer using customer user_id
+					@Test
+					@Rollback(true)
+					public void getOrderedProductName() {
+
+						List<String> sampleTest=new ArrayList<String>();
+						sampleTest.add("Product2");
+						sampleTest.add("Product6");
+						sampleTest.add("Product4");
+						sampleTest.add("Product10");
+						sampleTest.add("Product8");
+						
+						List<String> result = customerController.getOrderedProductName(3);
+						boolean checked = false;
+						if(sampleTest.equals(result))
+							checked=true;
+						Assert.assertEquals(true, checked);
+					}
+
 	
 }

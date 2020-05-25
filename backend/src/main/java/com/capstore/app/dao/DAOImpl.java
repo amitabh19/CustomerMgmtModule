@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -65,49 +67,40 @@ public class DAOImpl implements DAO {
 
 	@Autowired
 	private CartRepository cartRepository;
+	
+	Logger logger=LoggerFactory.getLogger(DAOImpl.class);
 
 	
 	@Override
 	public boolean createFeedback(ProductFeedback pf) {
+		logger.trace("Create Feedback is accessed  at DAO layer");
 		em.persist(pf);
 		return true;
-	}
-
-	@Override
-	public ProductFeedback getFeedbackByProductId(int productId) {
-		try {
-			//ProductFeedback pf = em.find(ProductFeedback.class, product_id);
-			String query1 = "select p from ProductFeedback p where p.productId=:productId";
-			TypedQuery<ProductFeedback> q1 = em.createQuery(query1, ProductFeedback.class);
-			q1.setParameter("productId", productId);
-			ProductFeedback pf = q1.getSingleResult();
-			//System.out.println(pf);
-			return pf;
-			
-		} catch (Exception e) {
-			return null;
-		}
 	}
 	
 	@Override
 	public Product addProduct(Product product) {
+		logger.trace("Add Product is accessed  at DAO layer");
 		return productRepository.save(product);
 		
 	}
 
 	@Override
 	public Product updateProduct(Product product) {
+		logger.trace("Update Product is accessed  at DAO layer");
 		return productRepository.save(product);
 	}
 
 	@Override
 	public void deleteProduct(Product product) {
+		logger.trace("Delete Product is accessed  at DAO layer");
 		productRepository.deleteById(product.getProductId());
 	}
 
 
 	@Override
 	public Product ListProductsByName(String name) {
+		logger.trace("ListProductsByName is accessed  at DAO layer");
 		List<Product> list1=productRepository.findAll();
 		List<Product> list2=list1.stream().filter(n->n.getProductName().equals(name)).collect(Collectors.toList());
 		Product p=list2.get(0);
@@ -116,6 +109,7 @@ public class DAOImpl implements DAO {
 	
 	@Override
 	public int ListProductIdByName(String name) {
+		logger.trace("ListProductIdByName is accessed  at DAO layer");
 		List<Product> list1=productRepository.findAll();
 		List<Product> list2=list1.stream().filter(n->n.getProductName().equals(name)).collect(Collectors.toList());
 		int pId=list2.get(0).getProductId();
@@ -124,72 +118,86 @@ public class DAOImpl implements DAO {
 
 	@Override
 	public List<Product> ListProducts() {
+		logger.trace("ListProducts is accessed  at DAO layer");
 		return productRepository.findAll();
 		
 	}
 	
 	@Override
 	public List<CustomerDetails> getAllCustomers() {
+		logger.trace("getAllCustomers is accessed  at DAO layer");
 		return customerRepository.findAll();
 	}
 
 	@Override
 	public CustomerDetails getCustomerById(@PathVariable int id) {
+		logger.trace("getCustomerById is accessed  at DAO layer");
 		return customerRepository.getOne(id);
 	}
 
 	@Override
 	public List<MerchantDetails> getAllMerchants() {
+		logger.trace("getAllMerchants is accessed  at DAO layer");
 		return merchantRepository.findAll();
 	}
 
 	@Override
 	public MerchantDetails getMerchantById(@PathVariable int id) {
+		logger.trace("getMerchantById is accessed  at DAO layer");
 		return merchantRepository.getOne(id);
 	}
 
 	@Override
 	public List<Product> getAllProducts() {
+		logger.trace("getAllProducts is accessed  at DAO layer");
 		return productRepository.findAll();
 	}
 
 	@Override
 	public Product getProductById(@PathVariable int id) {
+		logger.trace("getProductById is accessed  at DAO layer");
 		return productRepository.getOne(id);
 	}
 
 	@Override
 	public List<ProductFeedback> getAllProductFeedbacks() {
+		logger.trace("getAllProductFeedbacks is accessed  at DAO layer");
 		return productFeedbackRepository.findAll();
 	}
 
 	@Override
 	public ProductFeedback getProductFeedbackById(@PathVariable int id) {
+		logger.trace("getProductFeedbackById is accessed  at DAO layer");
 		return productFeedbackRepository.getOne(id);
 	}
 
 	@Override
 	public CommonFeedback getCommonFeedbackById(@PathVariable int id) {
+		logger.trace("getCommonFeedbackById is accessed  at DAO layer");
 		return commonFeedbackRepository.getOne(id);
 	}
 
 	@Override
 	public List<CommonFeedback> getAllCommonFeedbacks() {
+		logger.trace("getAllCommonFeedbacks is accessed  at DAO layer");
 		return commonFeedbackRepository.findAll();
 	}
 
 	@Override
 	public List<Order> getAllOrders() {
+		logger.trace("getAllOrders is accessed  at DAO layer");
 		return orderRepository.findAll();
 	}
 
 	@Override
 	public Order getOrderById(@PathVariable int id) {
+		logger.trace("getOrderById is accessed  at DAO layer");
 		return orderRepository.getOne(id);
 	}
 
 	// function to get numbers from json
 	public int stringCleaner(String obj) {
+		logger.trace("stringCleaner is accessed  at DAO layer");
 		String[] arr1 = obj.split("=");
 		String q = arr1[1];
 		int quan = Integer.parseInt(q);
@@ -199,6 +207,7 @@ public class DAOImpl implements DAO {
 	// post function to add to cart
 	@Override
 	public CustomerDetails addToCartBC(@RequestBody LocalCart lc) {
+		logger.trace("addToCartBC is accessed  at DAO layer");
 		// LocalCart : [uid =1, pid=2, quan=3]
 
 		int quan = lc.getQuantity();
@@ -225,6 +234,7 @@ public class DAOImpl implements DAO {
 
 	@Override
 	public List<Product> cartProducts(@PathVariable int id) {
+		logger.trace("cartProducts is accessed  at DAO layer");
 		CustomerDetails c = customerRepository.getOne(id);
 		List<Product> lp = new ArrayList<>();
 		Set<Cart> cc = c.getCustomerCarts();
@@ -239,6 +249,7 @@ public class DAOImpl implements DAO {
 	
 	@Override
 	public List<Product> wishProducts(@PathVariable int id) {
+		logger.trace("wishProducts is accessed  at DAO layer");
 		CustomerDetails c = customerRepository.getOne(id);
 		List<Product> lp = new ArrayList<>();
 		Set<Cart> cc = c.getCustomerCarts();
@@ -254,6 +265,7 @@ public class DAOImpl implements DAO {
 	// post function to add to wishlist
 	@Override
 	public CustomerDetails addToWishlist(@RequestBody LocalCart lc) {
+		logger.trace("addToWishlist is accessed  at DAO layer");
 
 		int quan = lc.getQuantity();
 		int pid = lc.getPid().getProductId();
@@ -281,6 +293,7 @@ public class DAOImpl implements DAO {
 	// function to delete wishlist
 	@Override
 	public String addToCartFromWishList(@PathVariable int id) {
+		logger.trace("addToCartFromWishList is accessed  at DAO layer");
 		cartRepository.deleteById(id);
 		
 		return "deleted from wishlist";
@@ -289,6 +302,7 @@ public class DAOImpl implements DAO {
 	// function to delete from cart
 	@Override
 	public String deleteFromCart(@PathVariable int id) {
+		logger.trace("deleteFromCart is accessed  at DAO layer");
 		cartRepository.deleteById(id);
 		return "deleted";
 	}
@@ -296,6 +310,7 @@ public class DAOImpl implements DAO {
 	// put function to add to cart
 	@Override
 	public CustomerDetails addToCartPut(@RequestBody CustomerDetails c) {
+		logger.trace("addToCartPut is accessed  at DAO layer");
 		return customerRepository.save(c);
 
 	}
@@ -303,6 +318,7 @@ public class DAOImpl implements DAO {
 		// function for product feedback
 	@Override
 		public CustomerDetails create(@RequestBody ProductFeedback1 productFeedback) {
+		logger.trace("create product feedback is accessed  at DAO layer");
 			//System.out.println("The product feedback object is: " + productFeedback.toString());
 			int custId=productFeedback.userId;
 			String feedSubject=productFeedback.feedbackSubject;
@@ -329,6 +345,7 @@ public class DAOImpl implements DAO {
 	@Override
 		public CustomerDetails getCustomerDetailById(@PathVariable Integer id)
 		{
+		logger.trace("getCustomerDetailById is accessed  at DAO layer");
 			return customerRepository.getOne(id);
 		}
 		
@@ -336,6 +353,7 @@ public class DAOImpl implements DAO {
 	@Override
 		public CustomerDetails updateCustomerDetails(@RequestBody CustomerDetails custDetails)
 		{
+		logger.trace("updateCustomerDetails is accessed  at DAO layer");
 			return customerRepository.save(custDetails);
 		}
 		
@@ -344,6 +362,7 @@ public class DAOImpl implements DAO {
 	//function for common feedback
 	@Override
 	public CustomerDetails createCommonFeedback(@RequestBody CommonFeedback1 commonFeedback) {
+		logger.trace("createCommonFeedback is accessed  at DAO layer");
 		System.out.println("The common feedback object is: " + commonFeedback.toString());
 		
 		int custId=commonFeedback.userId;
@@ -379,6 +398,7 @@ public class DAOImpl implements DAO {
 	
 	@Override
 	public List<String> getOrderedProductName(@PathVariable int id) {
+		logger.trace("getOrderedProductName is accessed  at DAO layer");
 		CustomerDetails cust=customerRepository.getOne(id);
 		Set<Order> orders=cust.getOrders();
 		Set<Integer> prodList= new HashSet<Integer>();
@@ -395,6 +415,7 @@ public class DAOImpl implements DAO {
 	
 	@Override
 	public String getNameByProductId(@PathVariable int id) {
+		logger.trace("getNameByProductId is accessed  at DAO layer");
 		return productRepository.getOne(id).getProductName();
 	}
 	

@@ -23,7 +23,6 @@ public interface CustomerService {
 	Product ListProductsByName(String name);
 	int ListProductIdByName(String name);
 	boolean createFeedback(ProductFeedback pf);
-	ProductFeedback getFeedbackByProductId(int productId);
 	List<CustomerDetails> getAllCustomers();
 	CustomerDetails getCustomerById(int id);
 	List<MerchantDetails> getAllMerchants();
