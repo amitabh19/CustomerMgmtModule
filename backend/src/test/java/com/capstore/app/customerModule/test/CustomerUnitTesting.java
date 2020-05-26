@@ -258,5 +258,77 @@ class CustomerUnitTesting {
 						Assert.assertEquals(true, checked);
 					}
 
+		
+		// Test function to get object of product by using its name 
+					@Test
+					public void getProductByName()
+					{
+						String name="Product2";
+						List<Product> list1=productRepository.findAll();
+						List<Product> list2=list1.stream().filter(n->n.getProductName().equals(name)).collect(Collectors.toList());
+						Product p1=list2.get(0);
+						Product p2=customerController.getProductByName(name);
+						
+						Assert.assertEquals(p2, p1);
+					}
+					
+			//Test to get product id by its name
+					@Test
+					public void getProductIdByName()
+					{
+						String name="Product2";
+						int p1=customerController.getProductIdByName(name);
+						List<Product> list1=productRepository.findAll();
+						List<Product> list2=list1.stream().filter(n->n.getProductName().equals(name)).collect(Collectors.toList());
+						Product p2=list2.get(0);
+						Assert.assertEquals(p1, p2.getProductId());
+					}
+					
+			//Test to get names of all categories of products available
+					@Test
+					public void categories()
+					{
+						List<String> s1=customerController.categories();
+						List<Product> p1=productRepository.findAll();
+						List<String> s2=new ArrayList<>();
+						for (Product p2 : p1) {
+							s2.add(p2.getProductCategory());
+						}
+						Set<String> f1 = new HashSet<>();
+						for (String s : s2) {
+							f1.add(s);
+						}
+
+						List<String> categories1 = new ArrayList<>();
+						for (String s : f1) {
+							categories1.add(s);
+						}
+						
+						Assert.assertEquals(categories1, s1);
+					}
+	//Test to get products based on categories
+					@Test
+					public void productByCategory()
+					{
+						String c="Category1";
+						List<Product> list1=customerController.productByCategory(c);
+						List<Product> list2 = productRepository.findAll().stream().filter(n -> n.getProductCategory().equals(c))
+								.collect(Collectors.toList());
+						Assert.assertEquals(list2,list1);
+					}
+					
+	//Test to get names of all products
+					@Test
+					public void getName()
+					{
+						List<String> list1=customerController.getName();
+						List<String> list2=new ArrayList<>();
+						List<Product> p=productRepository.findAll();
+						for (Product p1 : p) {
+							list2.add(p1.getProductName());
+						}
+						Assert.assertEquals(list2, list1);
+					}
+
 	
 }
