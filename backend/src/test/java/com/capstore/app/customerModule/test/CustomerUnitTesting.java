@@ -4,8 +4,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -26,6 +28,7 @@ import com.capstore.app.models.Product;
 import com.capstore.app.models.ProductFeedback;
 import com.capstore.app.models.ProductFeedback1;
 import com.capstore.app.repository.CustomerRepository;
+import com.capstore.app.repository.ProductRepository;
 
 
 
@@ -39,6 +42,9 @@ class CustomerUnitTesting {
 	
 	@Autowired
 	private CustomerRepository customerRepository;
+	
+	@Autowired
+	private ProductRepository productRepository;
 
 	
 	//test functions for cart module
