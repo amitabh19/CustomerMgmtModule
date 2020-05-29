@@ -1,14 +1,6 @@
 package com.capstore.app.service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import javax.persistence.TypedQuery;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.capstore.app.dao.DAO;
-import com.capstore.app.dao.DAOImpl;
-import com.capstore.app.models.Cart;
 import com.capstore.app.models.CommonFeedback;
 import com.capstore.app.models.CommonFeedback1;
 import com.capstore.app.models.CustomerDetails;
@@ -38,7 +28,6 @@ public class CustomerServiceImpl implements CustomerService {
 	CustomerRepository customerRepository;
 	@Autowired
 	private DAO productDao;
-
 	@Autowired
 	private DAO dao;
 
@@ -95,12 +84,6 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public boolean createFeedback(ProductFeedback pf) {
-		logger.trace("createFeedback is accessed  at Service layer");
-		return dao.createFeedback(pf);
-	}
-
-	@Override
 	public List<CustomerDetails> getAllCustomers() {
 		logger.trace("getAllCustomers is accessed  at Service layer");
 		return dao.getAllCustomers();
@@ -129,25 +112,43 @@ public class CustomerServiceImpl implements CustomerService {
 		logger.trace("getAllProducts is accessed  at Service layer");
 		return dao.getAllProducts();
 	}
-
+	
+	/**
+	This method is used to get all the Product Feedbacks
+	@return List<ProductFeedback> This returns the list of all product feedback generated after calling DAO
+	*/
 	@Override
 	public List<ProductFeedback> getAllProductFeedbacks() {
 		logger.trace("getAllProductFeedbacks is accessed  at Service layer");
 		return dao.getAllProductFeedbacks();
 	}
-
+	
+	/**
+	This method is used to get Product Feedback by using id 
+	@param id This is the parameter to assign feedback id 
+	@return ProductFeedback This returns the object of ProductFeedback generated after calling DAO
+	*/
 	@Override
 	public ProductFeedback getProductFeedbackById(@PathVariable int id) {
 		logger.trace("getProductFeedbackById is accessed  at Service layer");
 		return dao.getProductFeedbackById(id);
 	}
-
+	
+	/**
+	This method is used to get Common Feedback by using id 
+	@param id This is the parameter to assign feedback id 
+	@return CommonFeedback This returns the object of CommonFeedback generated after calling DAO
+	*/
 	@Override
 	public CommonFeedback getCommonFeedbackById(@PathVariable int id) {
 		logger.trace("getCommonFeedbackById is accessed  at Service layer");
 		return dao.getCommonFeedbackById(id);
 	}
-
+	
+	/**
+	This method is used to get all the Common Feedbacks
+	@return List<CommonFeedback> This returns the list of all common feedback generated after calling DAO
+	*/
 	@Override
 	public List<CommonFeedback> getAllCommonFeedbacks() {
 		logger.trace("getAllCommonFeedbacks is accessed  at Service layer");
@@ -227,31 +228,37 @@ public class CustomerServiceImpl implements CustomerService {
 		return dao.addToCartPut(c);
 
 	}
+	
+	// get customer by id
+		@Override
+		public CustomerDetails getCustomerDetailById(@PathVariable Integer id) {
+			logger.trace("getCustomerDetailById is accessed  at Service layer");
+			return dao.getCustomerDetailById(id);
+		}
 
-	// function for product feedback
+		// Nikhil
+		@Override
+		public CustomerDetails updateCustomerDetails(@RequestBody CustomerDetails custDetails) {
+			logger.trace("updateCustomerDetails is accessed  at Service layer");
+			return dao.updateCustomerDetails(custDetails);
+		}
+
+	/**
+	This method is used to create new Product Feedback
+	@param ProductFeedback1 This is the parameter to assign ProductFeedback1 object 
+	@return CustomerDetails This returns the object of CustomerDetails generated after calling DAO
+	*/
 	@Override
 	public CustomerDetails create(@RequestBody ProductFeedback1 productFeedback) {
-		// System.out.println("The product feedback object is: " +
-		// productFeedback.toString());
 		logger.trace("create product feedback is accessed  at Service layer");
 		return dao.create(productFeedback);
 	}
-
-	// get customer by id
-	@Override
-	public CustomerDetails getCustomerDetailById(@PathVariable Integer id) {
-		logger.trace("getCustomerDetailById is accessed  at Service layer");
-		return dao.getCustomerDetailById(id);
-	}
-
-	// Nikhil
-	@Override
-	public CustomerDetails updateCustomerDetails(@RequestBody CustomerDetails custDetails) {
-		logger.trace("updateCustomerDetails is accessed  at Service layer");
-		return dao.updateCustomerDetails(custDetails);
-	}
-
-	// function for common feedback
+	
+	/**
+	This method is used to create new Common Feedback
+	@param CommonFeedback1 This is the parameter to assign CommonFeedback1 object 
+	@return CustomerDetails This returns the object of CustomerDetails generated after calling DAO
+	*/
 	@Override
 	public CustomerDetails createCommonFeedback(@RequestBody CommonFeedback1 commonFeedback) {
 
@@ -259,13 +266,23 @@ public class CustomerServiceImpl implements CustomerService {
 		return dao.createCommonFeedback(commonFeedback);
 
 	}
-
+	
+	/**
+	This method is used to get the name of product ordered by the customer by using customer id
+	@param int This is the parameter to assign customer user_id 
+	@return List<String> This returns the list of product name ordered by customer generated after calling DAO
+	*/
 	@Override
 	public List<String> getOrderedProductName(@PathVariable int id) {
 		logger.trace("getOrderedProductName is accessed  at Service layer");
 		return dao.getOrderedProductName(id);
 	}
-
+	
+	/**
+	This method is used to get the name of product by using product id
+	@param int This is the parameter to assign product id 
+	@return String This returns the product name generated after calling DAO
+	*/
 	@Override
 	public String getNameByProductId(@PathVariable int id) {
 		logger.trace("getNameByProductId is accessed  at Service layer");

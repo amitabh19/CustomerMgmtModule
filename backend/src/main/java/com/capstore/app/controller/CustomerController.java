@@ -3,14 +3,12 @@ package com.capstore.app.controller;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jackson.JsonObjectDeserializer;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capstore.app.models.Cart;
 import com.capstore.app.models.CommonFeedback;
 import com.capstore.app.models.CommonFeedback1;
 import com.capstore.app.models.CustomerDetails;
@@ -31,44 +28,19 @@ import com.capstore.app.models.Order;
 import com.capstore.app.models.Product;
 import com.capstore.app.models.ProductFeedback;
 import com.capstore.app.models.ProductFeedback1;
-import com.capstore.app.repository.CartRepository;
-import com.capstore.app.repository.CommonFeedbackRepository;
 import com.capstore.app.repository.CustomerRepository;
-import com.capstore.app.repository.MerchantRepository;
-import com.capstore.app.repository.OrderRepository;
-import com.capstore.app.repository.ProductFeedbackRepository;
-import com.capstore.app.repository.ProductRepository;
 
 import com.capstore.app.service.CustomerService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/customer")
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
 public class CustomerController {
-	
-	Logger logger= LoggerFactory.getLogger(CustomerController.class);
+
+	Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
 	@Autowired
-	private CustomerRepository customerRepository;
-
-	@Autowired
-	private ProductRepository productRepository;
-
-	@Autowired
-	private ProductFeedbackRepository productFeedbackRepository;
-
-	@Autowired
-	private CommonFeedbackRepository commonFeedbackRepository;
-
-	@Autowired
-	private OrderRepository orderRepository;
-
-	@Autowired
-	private MerchantRepository merchantRepository;
-
-	@Autowired
-	private CartRepository cartRepository;
+	CustomerRepository customerRepository;
 
 	@Autowired
 	CustomerService customerService;
@@ -172,7 +144,7 @@ public class CustomerController {
 		return customerService.cartProducts(id);
 
 	}
-	
+
 	@GetMapping("/wishProducts/{id}")
 	public List<Product> wishProducts(@PathVariable int id) {
 		logger.trace("wishProducts Method Accessed...");
@@ -209,41 +181,19 @@ public class CustomerController {
 		return customerService.addToCartPut(c);
 
 	}
-		
-		// function for product feedback
-		@PostMapping("/addFeedback")
-		public CustomerDetails create(@RequestBody ProductFeedback1 productFeedback) {
-			//System.out.println("The product feedback object is: " + productFeedback.toString());
-			logger.trace("addFeedback Method Accessed...");
-			return  customerService.create(productFeedback);
-		}
 
-		
-		//Nikhil
-		@GetMapping("/customerdetails/{id}")
-		public CustomerDetails getCustomerDetailById(@PathVariable Integer id)
-		{
-			logger.trace("getCustomerDetailById Method Accessed...");
-			return customerService.getCustomerDetailsById(id);
-		}
-		
-		//Nikhil
-		@PutMapping("/updateCustomerDetails")
-		public CustomerDetails updateCustomerDetails(@RequestBody CustomerDetails custDetails)
-		{
-			logger.trace("updateCustomerDetails Method Accessed...");
-			return customerService.updateCustomerDetails(custDetails);
-		}
-		
-	
-		
-	//function for common feedback
-	@PostMapping("/addCommonFeedback")
-	public CustomerDetails createCommonFeedback(@RequestBody CommonFeedback1 commonFeedback) {
-		//System.out.println("The common feedback object is: " + commonFeedback.toString());
-		logger.trace("createCommonFeedback Method Accessed...");
-		return customerService.createCommonFeedback(commonFeedback);
+	// Nikhil
+	@GetMapping("/customerdetails/{id}")
+	public CustomerDetails getCustomerDetailById(@PathVariable Integer id) {
+		logger.trace("getCustomerDetailById Method Accessed...");
+		return customerService.getCustomerDetailsById(id);
+	}
 
+	// Nikhil
+	@PutMapping("/updateCustomerDetails")
+	public CustomerDetails updateCustomerDetails(@RequestBody CustomerDetails custDetails) {
+		logger.trace("updateCustomerDetails Method Accessed...");
+		return customerService.updateCustomerDetails(custDetails);
 	}
 
 	@RequestMapping("/product1/{name}")
@@ -251,26 +201,12 @@ public class CustomerController {
 		logger.trace("getProductByName Method Accessed...");
 		return productService.ListProductsByName(name);
 	}
-	
+
 	@GetMapping("/productIdByName/{name}")
 	public int getProductIdByName(@PathVariable String name) {
 		logger.trace("getProductIdByName Method Accessed...");
 		return productService.ListProductIdByName(name);
 	}
-	
-	@GetMapping("/orderedProductName/{id}")
-	public List<String> getOrderedProductName(@PathVariable int id) {
-		logger.trace("getOrderedProductName Method Accessed...");
-		return customerService.getOrderedProductName(id);
-	}
-	
-	@GetMapping("/productNameById/{id}")
-	public String getNameByProductId(@PathVariable int id) {
-		logger.trace("getNameByProductId Method Accessed...");
-		return customerService.getNameByProductId(id);
-	}
-	
-	
 
 	@RequestMapping("/categories")
 	public List<String> categories() {
@@ -324,6 +260,35 @@ public class CustomerController {
 				"Mobile Accessories", true, true, true);
 		Product p1 = productService.addProduct(p);
 		return p1;
+	}
+
+	// function to add product feedback
+	@PostMapping("/addFeedback")
+	public CustomerDetails create(@RequestBody ProductFeedback1 productFeedback) {
+		logger.trace("addFeedback Method Accessed...");
+		return customerService.create(productFeedback);
+	}
+
+	// function to add common feedback
+	@PostMapping("/addCommonFeedback")
+	public CustomerDetails createCommonFeedback(@RequestBody CommonFeedback1 commonFeedback) {
+		logger.trace("createCommonFeedback Method Accessed...");
+		return customerService.createCommonFeedback(commonFeedback);
+
+	}
+	
+	// function to get name of product ordered by customer
+	@GetMapping("/orderedProductName/{id}")
+	public List<String> getOrderedProductName(@PathVariable int id) {
+		logger.trace("getOrderedProductName Method Accessed...");
+		return customerService.getOrderedProductName(id);
+	}
+	
+	//function to get product name by using product id
+	@GetMapping("/productNameById/{id}")
+	public String getNameByProductId(@PathVariable int id) {
+		logger.trace("getNameByProductId Method Accessed...");
+		return customerService.getNameByProductId(id);
 	}
 
 }

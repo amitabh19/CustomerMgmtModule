@@ -13,7 +13,6 @@ import com.capstore.app.models.ProductFeedback;
 import com.capstore.app.models.ProductFeedback1;
 
 public interface DAO {
-	public boolean createFeedback(ProductFeedback pf);
 
 	public Product addProduct(Product product);
 
