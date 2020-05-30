@@ -94,7 +94,7 @@ public class Application implements CommandLineRunner {
 				Product product27 = new Product("Brown mens belt by ABC", "./assets/product27.jpg", 645, 2, 2, "Brand3", 320, "Product Info27", 2, "Accessories", true, true, true);
 				Product product28 = new Product("Black mens belt ", "./assets/product28.jpg", 585, 4, 2, "Brand3", 260, "Product Info28", 2, "Accessories", true, true, true);
 				Product product29 = new Product("Mens belt", "./assets/product29.jpg", 810, 4, 2, "Brand3", 360, "Product Info29", 2, "Accessories", true, true, true);
-				Product product30 = new Product("Black mens wallet", "./assets/product30.jpg", 900, 4, 2, "Brand3", 410, "Product Info30", 2, "Accessories", true, true, true);
+				Product product30 = new Product("Black leather belt", "./assets/product30.jpg", 900, 4, 2, "Brand3", 410, "Product Info30", 2, "Accessories", true, true, true);
 
 				
 				Set<Product> merchant1Product = new HashSet<Product>();
@@ -154,15 +154,14 @@ public class Application implements CommandLineRunner {
 				
 				//add product in order
 				Map<Integer,Integer> order1Product = new HashMap<Integer,Integer>();
-				order1Product.put(1, 10);
-				order1Product.put(2, 11);
-				order1Product.put(3, 20);
+				order1Product.put(1, 22);
+				order1Product.put(2, 23);
+				order1Product.put(3, 24);
 				
 				Map<Integer,Integer> order2Product = new HashMap<Integer,Integer>();
-				order2Product.put(1, 21);
-				order2Product.put(2, 22);
-				order2Product.put(3, 10);
-				
+				order2Product.put(1, 26);
+				order2Product.put(2, 30);
+				order2Product.put(3, 22);
 				
 				//add order in customer
 				Order orders=new Order(300,"Shipped",null,1,null);
