@@ -65,18 +65,37 @@ public class Application implements CommandLineRunner {
 				customerRepository.save(customer2);
 				
 				//add product to merchants
-				Product product1 = new Product("Product1", "./assets/product1.jpg", 500, 4, 2, "Brand1", 100, "Product Info", 2, "Electronics", true, true, true);
-				Product product2 = new Product("Product2", "./assets/product2.jpg", 550, 3, 2, "Brand2", 120, "Product Info2", 2, "Clothing", true, true, true);
-				Product product3 = new Product("Product3", "./assets/product3.jpg", 505, 4, 2, "Brand3", 130, "Product Info3", 2, "Footwear", true, true, true);
-				Product product4 = new Product("Product4", "./assets/product4.jpg", 4545, 4, 2, "Brand3", 230, "Product Info4", 2, "Footwear", true, true, true);
-				Product product5 = new Product("Product5", "./assets/product5.jpg", 5025, 4, 2, "Brand2", 420, "Product Info5", 2, "Clothing", true, true, true);
-				Product product6 = new Product("Product6", "./assets/product6.jpg", 605, 4, 2, "Brand2", 330, "Product Info6", 2, "Clothing", true, true, true);
-				Product product7 = new Product("Product7", "./assets/product7.jpg", 400, 4, 2, "Brand1", 220, "Product Info7", 2, "Clothing", true, true, true);
-				Product product8 = new Product("Product8", "./assets/product8.jpg", 800, 4, 2, "Brand1", 130, "Product Info8", 2, "Electronics", true, true, true);
-				Product product9 = new Product("Product9", "./assets/product9.jpg", 105, 2, 2, "Brand2", 430, "Product Info9", 2, "Electronics", true, true, true);
-				Product product10 = new Product("Product10", "./assets/wallet.jpg", 2305, 1, 2, "Brand3", 900, "Product Info10", 2, "Electronics", true, true, true);
-				Product product11 = new Product("Product11", "./assets/product11.jpg", 1505, 4, 2, "Brand3", 100, "Product Info11", 2, "Footwear", true, true, true);
-				
+				Product product1 = new Product("Nike Shoes-Red", "./assets/product1.jpg", 500, 4, 2, "Brand1", 100, "Product Info", 2, "Footwear", true, true, true);
+				Product product2 = new Product("Mens shoes-white", "./assets/product2.jpg", 550, 3, 2, "Brand2", 120, "Product Info2", 2, "Footwear", true, true, true);
+				Product product3 = new Product("Black Mens Shoes", "./assets/product3.jpg", 505, 4, 2, "Brand3", 130, "Product Info3", 2, "Footwear", true, true, true);
+				Product product4 = new Product("Black and white mens shoes", "./assets/product4.jpg", 4545, 4, 2, "Brand3", 230, "Product Info4", 2, "Footwear", true, true, true);
+				Product product5 = new Product("Mens shoes-yellow", "./assets/product5.jpg", 5025, 4, 2, "Brand2", 420, "Product Info5", 2, "Footwear", true, true, true);
+				Product product6 = new Product("White mens shoes", "./assets/product6.jpg", 605, 4, 2, "Brand2", 330, "Product Info6", 2, "Footwear", true, true, true);
+				Product product7 = new Product("Mens Shirt-navy blue-formal-XL", "./assets/product7.jpg", 400, 4, 2, "Brand1", 220, "Product Info7", 2, "Clothing", true, true, true);
+				Product product8 = new Product("Dark Blue mens shirt-L", "./assets/product8.jpg", 800, 4, 2, "Brand1", 130, "Product Info8", 2, "Clothing", true, true, true);
+				Product product9 = new Product("Light blue mens shirt-L", "./assets/product9.jpg", 105, 2, 2, "Brand2", 430, "Product Info9", 2, "Clothing", true, true, true);
+				Product product10 = new Product("Mens wallet", "./assets/wallet.jpg", 2305, 1, 2, "Brand3", 900, "Product Info10", 2, "Accessories", true, true, true);
+				Product product11 = new Product("Checked mens shirt size-XL", "./assets/product11.jpg", 1505, 4, 2, "Brand3", 140, "Product Info11", 2, "Clothing", true, true, true);
+				Product product12 = new Product("Black and Turquoise mens shirt size-L/XL", "./assets/product12.jpg", 1500, 4, 2, "Brand4", 125, "Product Info12", 2, "Clothing", true, true, true);
+				Product product13 = new Product("Violet mens shirt size-L", "./assets/product13.jpg", 1700, 5, 2, "Brand4", 100, "Product Info13", 2, "Clothing", true, true, true);
+				Product product14 = new Product("Brown Mens formal shoes size-42", "./assets/product14.jpg", 750, 3, 2, "Brand3", 150, "Product Info14", 2, "Footwear", true, true, true);
+				Product product15 = new Product("Mens shirt-size-L", "./assets/product15.jpg", 850, 4, 2, "Brand2", 180, "Product Info15", 2, "Clothing", true, true, true);
+				Product product16 = new Product("Black Mens formal shoes", "./assets/product16.jpg", 1000, 4, 2, "Brand3", 160, "Product Info16", 2, "Footwear", true, true, true);
+				Product product17 = new Product("Black Mens Formal shoes-2", "./assets/product17.jpg", 1200, 3, 2, "Brand4", 210, "Product Info17", 2, "Footwear", true, true, true);
+				Product product18 = new Product("Red shoes for men", "./assets/product18.jpg", 1750, 4, 2, "Brand2", 310, "Product Info18", 2, "Footwear", true, true, true);
+				Product product19 = new Product("White formal shirt size-XL", "./assets/product19.jpg", 1200, 2, 2, "Brand3", 130, "Product Info19", 2, "Clothing", true, true, true);
+				Product product20 = new Product("Wallet Dark brown", "./assets/product20.jpg", 1505, 4, 2, "Brand2", 230, "Product Info20", 2, "Accessories", true, true, true);
+				Product product21 = new Product("Dark blue shirt size-L", "./assets/product21.jpg", 650, 4, 2, "Brand4", 410, "Product Info21", 2, "Clothing", true, true, true);
+				Product product22 = new Product("Black wallet for men", "./assets/product22.jpg", 550, 4, 2, "Brand3", 320, "Product Info22", 2, "Accessories", true, true, true);
+				Product product23 = new Product("Mens formal shirt", "./assets/product23.jpg", 1605, 4, 2, "Brand4", 250, "Product Info23", 2, "Clothing", true, true, true);
+				Product product24 = new Product("Mens wallet by ABC", "./assets/product24.jpg", 655, 3, 2, "Brand3", 180, "Product Info24", 2, "Accessories", true, true, true);
+				Product product25 = new Product("Mens wallet by DEF", "./assets/product25.jpg", 750, 4, 2, "Brand4", 300, "Product Info25", 2, "Accessories", true, true, true);
+				Product product26 = new Product("Mens belt brown leather", "./assets/product26.jpg", 745, 4, 2, "Brand3", 200, "Product Info26", 2, "Accessories", true, true, true);
+				Product product27 = new Product("Brown mens belt by ABC", "./assets/product27.jpg", 645, 2, 2, "Brand3", 320, "Product Info27", 2, "Accessories", true, true, true);
+				Product product28 = new Product("Black mens belt ", "./assets/product28.jpg", 585, 4, 2, "Brand3", 260, "Product Info28", 2, "Accessories", true, true, true);
+				Product product29 = new Product("Mens belt", "./assets/product29.jpg", 810, 4, 2, "Brand3", 360, "Product Info29", 2, "Accessories", true, true, true);
+				Product product30 = new Product("Black mens wallet", "./assets/product30.jpg", 900, 4, 2, "Brand3", 410, "Product Info30", 2, "Accessories", true, true, true);
+
 				
 				Set<Product> merchant1Product = new HashSet<Product>();
 				merchant1Product.add(product1);
@@ -84,6 +103,16 @@ public class Application implements CommandLineRunner {
 				merchant1Product.add(product4);
 				merchant1Product.add(product5);
 				merchant1Product.add(product6);
+				merchant1Product.add(product12);
+				merchant1Product.add(product14);
+				merchant1Product.add(product16);
+				merchant1Product.add(product18);
+				merchant1Product.add(product20);
+				merchant1Product.add(product22);
+				merchant1Product.add(product24);
+				merchant1Product.add(product26);
+				merchant1Product.add(product28);
+				merchant1Product.add(product30);
 				
 				Set<Product> merchant2Product = new HashSet<Product>();
 				merchant2Product.add(product3);
@@ -92,6 +121,15 @@ public class Application implements CommandLineRunner {
 				merchant2Product.add(product9);
 				merchant2Product.add(product10);
 				merchant2Product.add(product11);
+				merchant2Product.add(product13);
+				merchant2Product.add(product15);
+				merchant2Product.add(product17);
+				merchant2Product.add(product19);
+				merchant2Product.add(product21);
+				merchant2Product.add(product23);
+				merchant2Product.add(product25);
+				merchant1Product.add(product27);
+				merchant1Product.add(product29);
 				
 				merchant1.setProducts(merchant1Product);
 				merchant2.setProducts(merchant2Product);
