@@ -65,15 +65,14 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Product ListProductsByName(String name) {
-		logger.trace("ListProductsByName is accessed  at Service layer");
-		return productDao.ListProductsByName(name);
-	}
-
-	@Override
-	public int ListProductIdByName(String name) {
-		logger.trace("ListProductIdByName is accessed  at Service layer");
-		return productDao.ListProductIdByName(name);
+    public List<String> categories()
+    {
+		return productDao.categories();
+    }
+	
+	public List<Product> productByCategory(String str)
+	{
+		return productDao.productByCategory(str);
 	}
 
 	@Override
