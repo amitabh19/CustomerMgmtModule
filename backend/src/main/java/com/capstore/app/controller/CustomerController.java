@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capstore.app.exceptions.ResourceNotFoundException;
 import com.capstore.app.models.CommonFeedback;
 import com.capstore.app.models.CommonFeedback1;
 import com.capstore.app.models.CustomerDetails;
@@ -79,7 +80,7 @@ public class CustomerController {
 	}
 
 	@GetMapping("/product/{id}")
-	public Product getProductById(@PathVariable int id) {
+	public Product getProductById(@PathVariable int id) throws ResourceNotFoundException {
 		logger.trace("getProductById Method Accessed...");
 		return customerService.getProductById(id);
 	}
@@ -182,14 +183,14 @@ public class CustomerController {
 
 	}
 
-	// Nikhil
+	// function to get customer details
 	@GetMapping("/customerdetails/{id}")
-	public CustomerDetails getCustomerDetailById(@PathVariable Integer id) {
+	public CustomerDetails getCustomerDetailById(@PathVariable Integer id) throws ResourceNotFoundException {
 		logger.trace("getCustomerDetailById Method Accessed...");
 		return customerService.getCustomerDetailsById(id);
 	}
 
-	// Nikhil
+	// function to update customer details
 	@PutMapping("/updateCustomerDetails")
 	public CustomerDetails updateCustomerDetails(@RequestBody CustomerDetails custDetails) {
 		logger.trace("updateCustomerDetails Method Accessed...");

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -138,9 +139,9 @@ public class DAOImpl implements DAO {
 	}
 
 	@Override
-	public Product getProductById(@PathVariable int id) {
+	public Optional<Product> getProductById(@PathVariable int id) {
 		logger.trace("getProductById is accessed  at DAO layer");
-		return productRepository.getOne(id);
+		return productRepository.findById(id);
 	}
 
 	/**
@@ -322,14 +323,15 @@ public class DAOImpl implements DAO {
 		return customerRepository.save(c);
 	}
 	
-	// Nikhil
+	// get function to get customer details
 	@Override
-	public CustomerDetails getCustomerDetailById(@PathVariable Integer id) {
+	public Optional<CustomerDetails> getCustomerDetailById(@PathVariable Integer id) {
 		logger.trace("getCustomerDetailById is accessed  at DAO layer");
-		return customerRepository.getOne(id);
+		//return customerRepository.getOne(id);
+		return customerRepository.findById(id);
 	}
 
-	// Nikhil
+	// function to update customer details
 	@Override
 	public CustomerDetails updateCustomerDetails(@RequestBody CustomerDetails custDetails) {
 		logger.trace("updateCustomerDetails is accessed  at DAO layer");

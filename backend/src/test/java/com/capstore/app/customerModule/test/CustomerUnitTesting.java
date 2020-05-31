@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.capstore.app.controller.CustomerController;
+import com.capstore.app.exceptions.ResourceNotFoundException;
 import com.capstore.app.models.Cart;
 import com.capstore.app.models.CommonFeedback;
 import com.capstore.app.models.CommonFeedback1;
@@ -48,7 +49,7 @@ class CustomerUnitTesting {
 	// test function for add to cart
 	@Test
 	@Rollback(true)
-	public void testAddToCart() {
+	public void testAddToCart() throws ResourceNotFoundException {
 		Product p = customerController.getProductById(22);
 		LocalCart lc = new LocalCart();
 		lc.setCid(3);
@@ -70,7 +71,7 @@ class CustomerUnitTesting {
 	// test function for add to wishlist
 	@Test
 	@Rollback(true)
-	public void addToWishList() {
+	public void addToWishList() throws ResourceNotFoundException {
 
 		Product p = customerController.getProductById(22);
 		LocalCart lc = new LocalCart();
@@ -93,7 +94,7 @@ class CustomerUnitTesting {
 	// test function to get cart list
 	@Test
 	@Rollback(true)
-	public void testCartProducts() {
+	public void testCartProducts() throws ResourceNotFoundException {
 
 		Product p = customerController.getProductById(22);
 		LocalCart lc = new LocalCart();
@@ -110,7 +111,7 @@ class CustomerUnitTesting {
 	// test function to get wishList
 	@Test
 	@Rollback(true)
-	public void testWishProducts() {
+	public void testWishProducts() throws ResourceNotFoundException {
 
 		Product p = customerController.getProductById(22);
 		LocalCart lc = new LocalCart();
@@ -127,7 +128,7 @@ class CustomerUnitTesting {
 	// test function to delete cart product
 	@Test
 	@Rollback(true)
-	public void testDeleteWishList() {
+	public void testDeleteWishList() throws ResourceNotFoundException {
 
 		Product p = customerController.getProductById(22);
 		LocalCart lc = new LocalCart();
@@ -152,7 +153,7 @@ class CustomerUnitTesting {
 	// test function to delete cart product
 	@Test
 	@Rollback(true)
-	public void testDeleteCartProduct() {
+	public void testDeleteCartProduct() throws ResourceNotFoundException {
 
 		Product p = customerController.getProductById(22);
 		LocalCart lc = new LocalCart();
@@ -177,7 +178,7 @@ class CustomerUnitTesting {
 	// test function to get customer details by id
 	@Test
 	@Rollback(true)
-	public void testGetCustomerDetailById() {
+	public void testGetCustomerDetailById() throws ResourceNotFoundException {
 		CustomerDetails customerDetail = new CustomerDetails("Roxane", "roxy", "roxy3996", "roxy@gmail.com", "User",
 				true, "What is your petname", "Roxy", "3456789012", "2345678901", "rox@gmail.com", "India", null, null,
 				null, null, null);

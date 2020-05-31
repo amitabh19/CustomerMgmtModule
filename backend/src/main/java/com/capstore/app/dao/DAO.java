@@ -1,6 +1,7 @@
 package com.capstore.app.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.capstore.app.models.CommonFeedback;
 import com.capstore.app.models.CommonFeedback1;
@@ -20,7 +21,7 @@ public interface DAO {
 
 	public void deleteProduct(Product product);
 
-	public Product getProductById(int productId);
+	public Optional<Product> getProductById(int productId);
 
 	public List<Product> ListProducts();
 
@@ -66,7 +67,7 @@ public interface DAO {
 
 	CustomerDetails create(ProductFeedback1 productFeedback);
 
-	CustomerDetails getCustomerDetailById(Integer id);
+	Optional<CustomerDetails> getCustomerDetailById(Integer id);
 
 	CustomerDetails updateCustomerDetails(CustomerDetails custDetails);
 

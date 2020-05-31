@@ -2,6 +2,7 @@ package com.capstore.app.service;
 
 import java.util.List;
 
+import com.capstore.app.exceptions.ResourceNotFoundException;
 import com.capstore.app.models.CommonFeedback;
 import com.capstore.app.models.CommonFeedback1;
 import com.capstore.app.models.CustomerDetails;
@@ -13,7 +14,7 @@ import com.capstore.app.models.ProductFeedback;
 import com.capstore.app.models.ProductFeedback1;
 
 public interface CustomerService {
-	public CustomerDetails getCustomerDetailsById(Integer id);
+	public CustomerDetails getCustomerDetailsById(Integer id) throws ResourceNotFoundException;
 
 	public CustomerDetails updateCustomerDetails(CustomerDetails customer);
 
@@ -23,7 +24,7 @@ public interface CustomerService {
 
 	void deleteProduct(Product product);
 
-	Product getProductById(int productId);
+	Product getProductById(int productId) throws ResourceNotFoundException;
 
 	List<Product> ListProducts();
 
@@ -69,7 +70,7 @@ public interface CustomerService {
 
 	CustomerDetails create(ProductFeedback1 productFeedback);
 
-	CustomerDetails getCustomerDetailById(Integer id);
+	CustomerDetails getCustomerDetailById(Integer id) throws ResourceNotFoundException;
 
 	CustomerDetails createCommonFeedback(CommonFeedback1 commonFeedback);
 

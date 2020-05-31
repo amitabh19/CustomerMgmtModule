@@ -1,6 +1,7 @@
 package com.capstore.app.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.capstore.app.dao.DAO;
+import com.capstore.app.exceptions.ResourceNotFoundException;
 import com.capstore.app.models.CommonFeedback;
 import com.capstore.app.models.CommonFeedback1;
 import com.capstore.app.models.CustomerDetails;
@@ -53,9 +55,17 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Product getProductById(int productId) {
+	public Product getProductById(int productId) throws ResourceNotFoundException {
 		logger.trace("getProductById is accessed  at Service layer");
-		return productDao.getProductById(productId);
+		Optional<Product> p= productDao.getProductById(productId);
+		if(p.isPresent())
+		{
+			return p.get();
+		}
+		else {
+			throw new ResourceNotFoundException("No product record exist for given id");
+		}
+		//return productDao.getProductById(productId);
 	}
 
 	@Override
@@ -77,9 +87,16 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public CustomerDetails getCustomerDetailsById(Integer id) {
+	public CustomerDetails getCustomerDetailsById(Integer id) throws ResourceNotFoundException {
 		logger.trace("getCustomerDetailsById is accessed  at Service layer");
-		return dao.getCustomerDetailById(id);
+		Optional<CustomerDetails> cd =dao.getCustomerDetailById(id);
+		if(cd.isPresent()) {
+			return cd.get();
+		}
+		else {
+			throw new ResourceNotFoundException("No customer record exist for given id");
+		}
+		//return dao.getCustomerDetailById(id);
 
 	}
 
@@ -231,9 +248,16 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	// get customer by id
 		@Override
-		public CustomerDetails getCustomerDetailById(@PathVariable Integer id) {
+		public CustomerDetails getCustomerDetailById(@PathVariable Integer id) throws ResourceNotFoundException {
 			logger.trace("getCustomerDetailById is accessed  at Service layer");
-			return dao.getCustomerDetailById(id);
+			//return dao.getCustomerDetailById(id);
+			Optional<CustomerDetails> cd =dao.getCustomerDetailById(id);
+			if(cd.isPresent()) {
+				return cd.get();
+			}
+			else {
+				throw new ResourceNotFoundException("No customer record exist for given id");
+			}
 		}
 
 		// Nikhil
