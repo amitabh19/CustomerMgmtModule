@@ -52,14 +52,17 @@ export class CategoryDComponent implements OnInit {
 
   search()
   {
-    this.result1=this.products.find(x=>x.productName==this.searchText);
-    if(this.result1)
+    this.result=this.products.filter(res=>
+      {
+        return res.productName.toLocaleLowerCase().match(this.searchText.toLocaleLowerCase());
+      });
+    if(this.result)
     {
       console.log("found");
-        this._customerService.setPName=this.result1.productName;
-        this._customerService.setter(this.result1);
-        alert("Now taking u to product page");
-        this.router.navigate(['disP']);
+      this._customerService.setP = this.products1;
+      this._customerService.setPName =this.searchText;
+      alert("Now taking u to product page");
+      this.router.navigate(['disP']);
     }
   }
   

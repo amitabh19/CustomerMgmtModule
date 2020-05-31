@@ -47,5 +47,25 @@ export class CategoryComponent implements OnInit {
     }
   }
 
+  go()
+  {
+    this.router.navigate(['/cat']);
+  }
+
+  search()
+  {
+    this.result=this.products.filter(res=>
+      {
+        return res.productName.toLocaleLowerCase().match(this.searchText.toLocaleLowerCase());
+      });
+    if(this.result)
+    {
+      console.log("found");
+      this.customerService.setP = this.products1;
+      this.customerService.setPName =this.searchText;
+      alert("Now taking u to product page");
+      this.router.navigate(['disP']);
+    }
+  }
   
 }
