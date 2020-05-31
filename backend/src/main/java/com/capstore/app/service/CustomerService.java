@@ -28,9 +28,9 @@ public interface CustomerService {
 
 	List<Product> ListProducts();
 
-	Product ListProductsByName(String name);
-
-	int ListProductIdByName(String name);
+	public List<String> categories();
+	
+	public List<Product> productByCategory(String str);
 
 	List<CustomerDetails> getAllCustomers();
 

@@ -64,6 +64,10 @@ public class DAOImpl implements DAO {
 
 	Logger logger = LoggerFactory.getLogger(DAOImpl.class);
 
+	/*
+	 * This function is used to add products to the database
+	 * @return productRepository.save(product) would save the product and returns the product object
+	 * */
 	@Override
 	public Product addProduct(Product product) {
 		logger.trace("Add Product is accessed  at DAO layer");
@@ -71,41 +75,65 @@ public class DAOImpl implements DAO {
 
 	}
 
+	/*
+	 * This function is used to update product details
+	 * @return productRepository.save(product) would save the updated version of the 
+	 * product and would return the object saved in database
+	 * */
 	@Override
 	public Product updateProduct(Product product) {
 		logger.trace("Update Product is accessed  at DAO layer");
 		return productRepository.save(product);
 	}
 
+	
+	/*
+	 * This function is used to delete any product from database 
+	 * */
 	@Override
 	public void deleteProduct(Product product) {
 		logger.trace("Delete Product is accessed  at DAO layer");
 		productRepository.deleteById(product.getProductId());
 	}
 
-	@Override
-	public Product ListProductsByName(String name) {
-		logger.trace("ListProductsByName is accessed  at DAO layer");
-		List<Product> list1 = productRepository.findAll();
-		List<Product> list2 = list1.stream().filter(n -> n.getProductName().equals(name)).collect(Collectors.toList());
-		Product p = list2.get(0);
-		return p;
-	}
-
-	@Override
-	public int ListProductIdByName(String name) {
-		logger.trace("ListProductIdByName is accessed  at DAO layer");
-		List<Product> list1 = productRepository.findAll();
-		List<Product> list2 = list1.stream().filter(n -> n.getProductName().equals(name)).collect(Collectors.toList());
-		int pId = list2.get(0).getProductId();
-		return pId;
-	}
-
+	/*
+	 * This function returns the list of all products so that they can be used to create the frontend
+	 * */
 	@Override
 	public List<Product> ListProducts() {
 		logger.trace("ListProducts is accessed  at DAO layer");
 		return productRepository.findAll();
 
+	}
+	
+	@Override
+	public List<String> categories()
+	{
+		List<Product> p = productRepository.findAll();
+		List<String> categories = new ArrayList<>();
+		for (Product p1 : p) {
+			categories.add(p1.getProductCategory());
+		}
+		Set<String> f1 = new HashSet<>();
+		for (String s : categories) {
+			f1.add(s);
+		}
+
+		List<String> categories1 = new ArrayList<>();
+		for (String s : f1) {
+			categories1.add(s);
+		}
+
+		System.out.println(categories1.toString());
+		return categories1;
+	}
+	
+	@Override
+	public List<Product> productByCategory(String str)
+	{
+		List<Product> p1 = productRepository.findAll().stream().filter(n -> n.getProductCategory().equals(str))
+				.collect(Collectors.toList());
+		return p1;
 	}
 
 	@Override

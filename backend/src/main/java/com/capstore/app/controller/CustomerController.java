@@ -197,71 +197,18 @@ public class CustomerController {
 		return customerService.updateCustomerDetails(custDetails);
 	}
 
-	@RequestMapping("/product1/{name}")
-	public Product getProductByName(@PathVariable String name) {
-		logger.trace("getProductByName Method Accessed...");
-		return productService.ListProductsByName(name);
-	}
-
-	@GetMapping("/productIdByName/{name}")
-	public int getProductIdByName(@PathVariable String name) {
-		logger.trace("getProductIdByName Method Accessed...");
-		return productService.ListProductIdByName(name);
-	}
-
 	@RequestMapping("/categories")
 	public List<String> categories() {
 		logger.trace("categories Method Accessed...");
-		List<Product> p = productService.ListProducts();
-		List<String> categories = new ArrayList<>();
-		for (Product p1 : p) {
-			categories.add(p1.getProductCategory());
-		}
-		Set<String> f1 = new HashSet<>();
-		for (String s : categories) {
-			f1.add(s);
-		}
-
-		List<String> categories1 = new ArrayList<>();
-		for (String s : f1) {
-			categories1.add(s);
-		}
-
-		System.out.println(categories1.toString());
-		return categories1;
-
+		return productService.categories();
 	}
 
 	@RequestMapping("/categories/{c}")
 	public List<Product> productByCategory(@PathVariable String c) {
 		logger.trace("productByCategory Method Accessed...");
-		List<Product> p1 = productService.ListProducts().stream().filter(n -> n.getProductCategory().equals(c))
-				.collect(Collectors.toList());
-		return p1;
+		return productService.productByCategory(c);
 	}
-
-	@RequestMapping("/productsName")
-	public List<String> getName() {
-		logger.trace("getName Method Accessed...");
-		List<String> names = new ArrayList<>();
-		List<Product> p1 = productService.ListProducts();
-
-		for (Product p : p1) {
-			names.add(p.getProductName());
-		}
-
-		System.out.println(names.toString());
-		return names;
-	}
-
-	@RequestMapping("test")
-	public Product addProduct() {
-		logger.trace("addProduct Method Accessed...");
-		Product p = new Product("Product1", "./assets/image3.jpg", 500, 4, 2, "B1", 100, "Wired Earphones", 2,
-				"Mobile Accessories", true, true, true);
-		Product p1 = productService.addProduct(p);
-		return p1;
-	}
+	
 
 	// function to add product feedback
 	@PostMapping("/addFeedback")

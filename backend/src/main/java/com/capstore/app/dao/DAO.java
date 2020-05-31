@@ -24,10 +24,10 @@ public interface DAO {
 	public Optional<Product> getProductById(int productId);
 
 	public List<Product> ListProducts();
-
-	public Product ListProductsByName(String name);
-
-	int ListProductIdByName(String name);
+	
+	public List<String> categories();
+	
+	public List<Product> productByCategory(String str);
 
 	List<CustomerDetails> getAllCustomers();
 

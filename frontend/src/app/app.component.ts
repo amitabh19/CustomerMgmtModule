@@ -17,22 +17,14 @@ export class AppComponent {
 
     products:Product[];
     products1:Product[];
-
-    names=new Array;
-    result1:Product;
+    
     constructor(private customerService:CustomerService,private router:Router) { }
 
   ngOnInit() {
-    this.customerService.getProduct1().subscribe((data: any[]) => {
+    this.customerService.getAllProducts().subscribe((data: any[]) => {
       console.log(data);
       this.products = data;
 
-    })
-
-    this.customerService.getName().subscribe((data:any[])=>
-    {
-      console.log(data);
-      this.names=data;
     })
 
   }
