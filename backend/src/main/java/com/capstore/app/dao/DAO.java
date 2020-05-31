@@ -76,4 +76,6 @@ public interface DAO {
 	List<String> getOrderedProductName(int id);
 
 	String getNameByProductId(int id);
+	
+	int ListProductIdByName(String name);
 }

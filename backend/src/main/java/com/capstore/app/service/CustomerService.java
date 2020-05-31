@@ -78,4 +78,6 @@ public interface CustomerService {
 
 	String getNameByProductId(int id);
 
+	int ListProductIdByName(String name);
+
 }

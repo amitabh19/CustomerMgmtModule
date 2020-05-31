@@ -312,4 +312,10 @@ public class CustomerServiceImpl implements CustomerService {
 		return dao.getNameByProductId(id);
 	}
 
+	@Override
+	public int ListProductIdByName(String name) {
+		logger.trace("ListProductIdByName is accessed  at Service layer");
+		return productDao.ListProductIdByName(name);
+	}
+
 }

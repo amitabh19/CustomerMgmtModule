@@ -196,7 +196,13 @@ public class CustomerController {
 		logger.trace("updateCustomerDetails Method Accessed...");
 		return customerService.updateCustomerDetails(custDetails);
 	}
-
+	
+	@GetMapping("/productIdByName/{name}")
+	public int getProductIdByName(@PathVariable String name) {
+		logger.trace("getProductIdByName Method Accessed...");
+		return productService.ListProductIdByName(name);
+	}
+	
 	@RequestMapping("/categories")
 	public List<String> categories() {
 		logger.trace("categories Method Accessed...");

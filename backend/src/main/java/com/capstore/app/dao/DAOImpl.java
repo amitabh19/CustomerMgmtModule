@@ -462,4 +462,13 @@ public class DAOImpl implements DAO {
 		return productRepository.getOne(id).getProductName();
 	}
 
+	@Override
+	public int ListProductIdByName(String name) {
+		logger.trace("ListProductIdByName is accessed  at DAO layer");
+		List<Product> list1 = productRepository.findAll();
+		List<Product> list2 = list1.stream().filter(n -> n.getProductName().equals(name)).collect(Collectors.toList());
+		int pId = list2.get(0).getProductId();
+		return pId;
+	}
+
 }
