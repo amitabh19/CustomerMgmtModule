@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class ProductPageComponent implements OnInit {
 
   product:Product;
+  discountedPrice:Number;
   constructor(private _customerService:CustomerService, private router:Router) { }
   customer:Customer;
   location:String;
@@ -20,6 +21,12 @@ export class ProductPageComponent implements OnInit {
   ngOnInit() {
     
     this.product=this._customerService.getProduct()
+
+    let discount = (Number(this.product.discount) * Number(this.product.productPrice))/100;
+   
+
+    this.discountedPrice = Number(this.product.productPrice) - discount;
+   
     this.location= this.product.productImage;
     console.log("location is:"+this.location);
     console.log("Product receieved is:"+this.product);

@@ -16,5 +16,6 @@ export class CustomerDetailsComponent implements OnInit {
   ngOnInit() {
     this._customerService.getCustomerById().subscribe(customerDetails =>this.customerDetails=customerDetails);
     console.log(this.customerDetails);
+   
   }
 }

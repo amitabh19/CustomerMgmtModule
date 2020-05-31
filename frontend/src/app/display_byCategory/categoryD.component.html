@@ -11,6 +11,7 @@
                   <div class="tab-pane active" id="pic-1"><img class="images" src={{res.productImage}}></div>
                 
             </div>
+           <a (click)="Cart(res)">
             <div class="details col-md-6">
                 <h3 class="product-title">{{res.productName}}</h3>
                 <div class="rating">
@@ -62,21 +63,10 @@
             </div>
                 </div>
                 </div>
-                <p class="product-description">Details about it: {{res.productInfo}}</p>
-                <h4 class="price">current price: <span>{{res.productPrice}}</span></h4>
-                <p class="product-discount">Discount : {{res.discount}}%</p>
-                <h5 class="brand">Brand: {{res.productBrand}}</h5>
-                <h5 class="colors">colors:
-                    <span class="color black"></span>
-                    <span class="color green"></span>
-                    <span class="color blue"></span>
-                </h5>
-
-                <div class="action">
-                    <button class="add-to-cart btn btn-default" type="button" (click)="Cart(res)">add to cart</button>
-                    <button class="like btn btn-default" type="button" (click)="wishList(res)">Add to wishList</button>
-                </div>
+                <h6 class="price">MRP: <span style="color: black;">	&#8377;{{res.productPrice}}</span></h6>
+                <p class="product-discount"><b>Discount :</b>{{res.discount}}% on MRP</p>              
         </div>
+        </a>
         <hr>
     </div>
   </div>

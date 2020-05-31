@@ -12,6 +12,7 @@ export class CustomerWishlistComponent implements OnInit {
   
   customerr:Customer;
   customer1:Customer
+  cust = new Customer();
   products:Product[]=[];
   product:Product;
   products1:Product[]=[];
@@ -40,23 +41,19 @@ export class CustomerWishlistComponent implements OnInit {
   {
     this.render = true;
   }
+  
   getData()
   {
+   
     for(var t =0; t< this.customerr.customerCarts.length; t++){
       if(this.customer1.customerCarts[t].type=="cart"){
          this.customer1.customerCarts.splice(t,1);
          t=t-1;
       }
     }
-    for(var ca of this.customer1.customerCarts){
-      console.log(ca);
-    }
-    console.log("Final Cart");
-    for(var ca of this.customerr.customerCarts){
-      console.log(ca);
-    }
-
-    for(var c of this.customerr.customerCarts){
+    
+    console.log( this.customer1.customerCarts)
+    for(var c of this.customer1.customerCarts){
        for( var p of this.products)
       {
         if(c.productId==p.productId)
@@ -70,16 +67,20 @@ export class CustomerWishlistComponent implements OnInit {
   }
 
   sendToCart(c,p:Product){
-   console.log(c.productId);
-   console.log(c.quantity);
-    console.log(this.customerr.userId);
 
-    this._customerService.addToCart(c.quantity,this.customerr,p).subscribe((customer)=>{
-      console.log(customer);
-    });
-    alert("Product added to cart");
-    this.deleteFromWishList(c);
+    console.log(c.cartId, p.productId);
+    let cust:Customer;
+    this._customerService.getCustomerByIdBC().then((customer)=>{
+     cust = customer;
+    }).then( (t)=>{
+    this._customerService.addToCart(c.quantity,cust,p).subscribe((customer)=>{
+    })
     
+  }).then(
+    (y)=>{
+      this.deleteFromWishList(c);
+    }
+  )
    
   }
 

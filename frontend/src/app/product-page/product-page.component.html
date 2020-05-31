@@ -1,6 +1,19 @@
-<div class ="container col-md-4">
+<div class="container row productP">
 
-  <img [src]="location" height="300px" width=100%> <br><br>
+<div class="col-md-5 offset-md-1">
+  <img [src]="location" height="400px" width=100%> <br><br>
+</div>
+
+<div class ="col-md-5">
+
+  <div class="productInfo">
+      <h2>{{product.productName}}</h2>
+      <h5>{{product.productInfo}}</h5>
+      <p><b>MRP: </b>	&#8377;<del>{{product.productPrice}}</del></p>
+      <p><b>Discount: </b>{{product.discount}}% on MRP</p>
+      <p><b>Discounted Price: </b>&#8377;{{discountedPrice}}</p>
+  </div>
+
   <form class="form">
     <input type="number" class="form-control" placeholder="Enter Quantity" #qty><br>
     <input type="submit" class="btn btn-warning form-control" value = "Add To Cart" (click)="sendToCart(qty.value)"><br><br>
@@ -16,8 +29,9 @@
       </div>
       <button type="button" class="btn btn-warning" (click)= "goToCart()">Go to cart</button>
       <button type="button" class="btn btn-warning" (click)= "goToWish()" style="margin-left: 10px;">Go to wishlist</button>
-      <button type="button" class="btn btn-warning" (click)= "goToFeedback()">Give Feedback</button>
+      <button type="button" class="btn btn-warning" (click)= "goToFeedback()" style="margin-left: 10px;">Give Feedback</button>
     </div>
     
   </form>
+</div>
 </div>

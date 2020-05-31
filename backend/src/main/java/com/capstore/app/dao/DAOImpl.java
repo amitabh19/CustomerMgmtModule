@@ -257,6 +257,10 @@ public class DAOImpl implements DAO {
 			System.out.println("The type of cart is:" + t.getType());
 			if (t.getProductId() == p.getProductId() && t.getType().equals("cart")) {
 				t.setQuantity(t.getQuantity() + quan);
+				if(t.getQuantity()>5) {
+					int q = 5;
+					t.setQuantity(q);
+				}
 				customerRepository.save(c);
 				return customerRepository.save(c);
 			}
@@ -314,6 +318,10 @@ public class DAOImpl implements DAO {
 		for (Cart t : cart) {
 			if (t.getProductId() == p.getProductId() && t.getType().equals("wishlist")) {
 				t.setQuantity(t.getQuantity() + quan);
+				if(t.getQuantity()>5) {
+					int q = 5;
+					t.setQuantity(q);
+				}
 				customerRepository.save(c);
 				return customerRepository.save(c);
 			}

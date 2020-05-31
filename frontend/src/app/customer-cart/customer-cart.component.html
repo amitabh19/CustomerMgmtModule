@@ -1,5 +1,7 @@
 <div class="container" *ngIf="render">
+
   <div style="padding: 30px;">
+    <h2 style="float: left;">Cart Items:</h2>
     <button class="btn btn-warning" style="float: right;">Check Out</button>
   </div>
   <div  *ngFor="let c of customerr.customerCarts; let i = index"
@@ -10,8 +12,8 @@
       </div>
       <div class="col-md-6 cartD">
         <h3>{{products1[i].productName}}</h3>
-        <p><span>Quantity:</span><small>{{c.quantity}}</small></p>
-        <button class="btn btn-warning" (click)="sendToWishlist(c,products1[i],deleteDiv)">Add To wishlist</button>
+        <p><span><b>Quantity:</b></span><small>{{c.quantity}}</small></p>
+        <button class="btn btn-warning" (click)="sendToWishlist(c,products1[i])">Add To wishlist</button>
         <button class="btn btn-danger" *ngIf="c" style="margin-left: 20px;" (click)="deleteFromCart(c,deleteDiv)">Remove</button>
       </div>
       </div>

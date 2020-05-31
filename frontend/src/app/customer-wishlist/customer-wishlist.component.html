@@ -1,18 +1,19 @@
 <div class="container" *ngIf="render">
-<div class="container ">
-
-  <div class="col-md-10 md-offset-1 row cart" *ngFor="let c of customer1.customerCarts; let i = index" [attr.data-index]="i">
-    <div class="col-md-4">
-      <img [src]="products1[i].productImage" height="100px" width="50%">
+  <div class="container ">
+    <h2 style="float: left; padding: 30px;">Wishlist Items:</h2>
+    <div class="col-md-10 md-offset-1 row cart" *ngFor="let c of customer1.customerCarts; let i = index" [attr.data-index]="i">
+     
+      <div class="col-md-4">
+        <img [src]="products1[i].productImage" height="100px" width="50%">
+      </div>
+      <div class="col-md-6 cartD">
+        <h3>{{products1[i].productName}}</h3>
+        <p><span><b>Quantity:</b></span><small>{{c.quantity}}</small></p>
+        <button class="btn btn-warning" (click)="sendToCart(c,products[i])">Add to cart</button>
+        <button class="btn btn-danger" (click)="deleteFromWishList(c)" style="margin-left: 20px;">Delete</button>
+      </div>
     </div>
-    <div class="col-md-6 cartD">
-      <h3>{{products1[i].productName}}</h3>
-      <p><span>Quantity:</span><small>{{c.quantity}}</small></p>
-      <button class="btn btn-warning" (click)="sendToCart(c,products[i])">Add to cart</button>
-      <button class="btn btn-danger" (click)="deleteFromWishList(c)" style="margin-left: 20px;">Delete</button>
-    </div>
+  
   </div>
-
-</div>
-
-</div>
+  
+  </div>

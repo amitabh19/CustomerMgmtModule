@@ -26,7 +26,8 @@ export class UpdateCustomerDetailsComponent implements OnInit {
     },(error)=>{
       console.log(error);
     })
-    this._router.navigate(['/showCustomerDetails'])
+    this._router.navigate(['/showCustomerDetails']);
+    
   }
 
 }
