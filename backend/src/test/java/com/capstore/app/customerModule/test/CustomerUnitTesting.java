@@ -254,11 +254,11 @@ class CustomerUnitTesting {
 	public void getOrderedProductName() {
 
 		List<String> sampleTest = new ArrayList<String>();
-		sampleTest.add("Product2");
-		sampleTest.add("Product6");
-		sampleTest.add("Product4");
-		sampleTest.add("Product10");
-		sampleTest.add("Product8");
+		sampleTest.add("Dark blue shirt size-L");
+		sampleTest.add("Violet mens shirt size-L");
+		sampleTest.add("Black Mens Shoes");
+		sampleTest.add("Light blue mens shirt-L");
+		sampleTest.add("White formal shirt size-XL");
 
 		List<String> result = customerController.getOrderedProductName(3);
 		boolean checked = false;
